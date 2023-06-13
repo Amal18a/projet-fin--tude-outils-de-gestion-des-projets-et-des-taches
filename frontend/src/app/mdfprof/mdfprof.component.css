@@ -1,0 +1,106 @@
+body {
+  background: rgb(99, 39, 120)
+}
+.row{
+  width: 760px;
+    margin-left: 5%;
+   
+    height: 500px;
+}
+input{
+  width: 250px;
+}
+
+h4{
+  font-family: 'Pacifico', cursive;
+  color: #371c9c;
+  margin-left: 10%;
+ 
+}
+h5{
+  margin-left: 10%;
+ 
+}
+
+
+
+.ama{
+  margin-left: 68%;
+  margin-top: 15%;
+  margin-bottom: 7%;
+}
+.form-control:focus {
+  box-shadow: none;
+  border-color: #BA68C8
+}
+
+.profile-button {
+  background: rgb(99, 39, 120);
+  box-shadow: none;
+  border: none
+}
+
+img{
+  margin-left: 5%;
+  margin-bottom: 10%;
+}
+span{
+  margin-left: 35%;
+}
+.profile-button:hover {
+  background: #682773
+}
+
+.profile-button:focus {
+  background: #682773;
+  box-shadow: none
+}
+
+.profile-button:active {
+  background: #682773;
+  box-shadow: none
+}
+
+.back:hover {
+  color: #682773;
+  cursor: pointer
+}
+
+.labels {
+  font-size: 17px;
+  text-transform: uppercase;
+  font-family: 'Pacifico', cursive;
+}
+.label{
+  font-size: 15px;
+}
+
+.add-experience:hover {
+  background: #BA68C8;
+  color: #fff;
+  cursor: pointer;
+  border: solid 1px #BA68C8
+}
+
+
+button {
+  background-color: rgb(62, 17, 160);
+  padding: 14px 40px;
+  color: #ffffff;
+  
+
+ 
+  border-radius: 10px;
+  border: 2px blue;
+
+  transition: .4s;
+ 
+  margin-left: 100%;
+  margin-top: 5%;
+
+ }
+ 
+ .retour{
+  margin-top: 10%;
+  margin-left: 118%;
+ }

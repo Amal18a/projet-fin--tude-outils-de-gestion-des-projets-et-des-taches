@@ -1,0 +1,110 @@
+body {
+  background: rgb(99, 39, 120)
+}
+/* .row{
+  background-color: rgb(255, 255, 255);
+  width: 650px;
+  margin-left: 20%;
+  border-radius: 30px;
+  box-shadow: 3px 3px 7px;
+  height: 450px;
+} */
+input{
+  width: 250px;
+}
+
+h4{
+  font-family: 'Pacifico', cursive;
+  color: #371c9c;
+  margin-left: 15%;
+ 
+}
+h5{
+  margin-left: 15%;
+ 
+}
+
+hr{
+  color: rgb(85, 61, 240);
+  width: 320px;
+  border: 3px solid;
+   
+}
+.ama{
+  margin-left: 15%;
+  margin-top: 5%;
+  margin-bottom: 7%;
+}
+.form-control:focus {
+  box-shadow: none;
+  border-color: #BA68C8
+}
+
+.profile-button {
+  background: rgb(99, 39, 120);
+  box-shadow: none;
+  border: none
+}
+
+
+span{
+  margin-left: 35%;
+}
+.profile-button:hover {
+  background: #682773
+}
+
+.profile-button:focus {
+  background: #682773;
+  box-shadow: none
+}
+
+.profile-button:active {
+  background: #682773;
+  box-shadow: none
+}
+
+.back:hover {
+  color: #682773;
+  cursor: pointer
+}
+
+.labels {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-family: 'Pacifico', cursive;
+}
+.label{
+  font-size: 14px;
+}
+
+.add-experience:hover {
+  background: #BA68C8;
+  color: #fff;
+  cursor: pointer;
+  border: solid 1px #BA68C8
+}
+.mor{
+  margin-left: 50%;
+}
+
+.btn1{
+  height: 40px;  
+  width: 140px;
+  border: none;
+  outline: none;
+  border-radius : 10px;
+  font-weight: 600;
+  background:rgb(62, 17, 160);
+  color: white;
+  margin-top: 9%;
+  margin-left: 157%;
+}
+.btn1:hover{
+    background: rgb(62, 17, 160);
+    transition: 0.5s;
+}
+ .retour{
+  margin-top: 15%;
+  margin-left: 178%;
+ }

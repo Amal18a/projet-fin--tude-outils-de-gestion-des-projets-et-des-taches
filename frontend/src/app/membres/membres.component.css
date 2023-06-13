@@ -1,0 +1,97 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 20px;
+  }
+  
+  .member-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .member-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .member-card span {
+    font-weight: bold;
+  }
+  
+  .member-card button {
+    background-color: #FF4136;
+    color: #FFFFFF;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: auto;
+  }
+  
+  .member-card button:hover {
+    background-color: #E62E29;
+  }
+  /* CSS pour le formulaire d'ajout de membre */
+.add-member-form {
+    margin-top: 20px;
+  }
+  
+  .add-member-form h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333333;
+  }
+  
+  .add-member-form select {
+    width: 200px;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .add-member-form hr {
+    border: none;
+    border-top: 1px solid #CCCCCC;
+    margin: 20px 0;
+  }
+  
+  .add-member-form h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 10px;
+  }
+  
+  .add-member-form button {
+    background-color: #0074D9;
+    color: #FFFFFF;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-member-form button:hover {
+    background-color: #0058A3;
+  }
+  
+  .add-member-form div:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  
+  .add-member-form div:last-child {
+    color: #999999;
+  }

@@ -1,0 +1,64 @@
+
+
+<br/>
+  <div class="eyy">
+    <h2>Liste des Users Stories</h2>
+    <button class="add-button" (click)="toggleAddForm()">Ajouter User Story</button>
+ 
+    <table class="user-stories-table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>User Story</th>
+          <th>Estimation</th>
+          <th>Priorité</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let userstory of userstory | paginate: { itemsPerPage: pageSize, currentPage: p }; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>
+            <ng-container *ngIf="!userstory.isEditing">{{ userstory.user_story }}</ng-container>
+            <input *ngIf="userstory.isEditing" type="text" [(ngModel)]="userstory.user_story">
+          </td>
+          <td>
+            <ng-container *ngIf="!userstory.isEditing">{{ userstory.estimation }}</ng-container>
+            <input *ngIf="userstory.isEditing" type="text" [(ngModel)]="userstory.estimation">
+          </td>
+          <td>
+            <ng-container *ngIf="!userstory.isEditing">{{ userstory.priorite }}</ng-container>
+            <input *ngIf="userstory.isEditing" type="text" [(ngModel)]="userstory.priorite">
+          </td>
+          <td>
+            <button class="action-button" (click)="editUserStory(userstory)" *ngIf="!userstory.isEditing">
+              <i class="fa fa-pencil"></i>
+            </button>
+            <button class="action-button" (click)="updateUserStory(userstory)" *ngIf="userstory.isEditing">
+              <i class="fa fa-check"></i>
+            </button>
+            <button class="action-button" (click)="cancelEditUserStory(userstory)" *ngIf="userstory.isEditing">
+              <i class="fa fa-times"></i>
+            </button>
+            <button class="action-button" (click)="deleteUserStory(userstory._id)" *ngIf="!userstory.isEditing">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="showAddForm">
+          
+          <td><input type="text" [(ngModel)]="userStory.id"></td>
+          <td><input type="text" [(ngModel)]="userStory.user_story"></td>
+          <td><input type="text" [(ngModel)]="userStory.estimation"></td>
+          <td><input type="text" [(ngModel)]="userStory.priorite"></td>
+          <td>
+            <button class="action-button" (click)="addUserStory()">Ajouter</button>
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <br/>
+    <pagination-controls  (pageChange)="p = $event"></pagination-controls>
+  </div>

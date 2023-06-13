@@ -1,0 +1,28 @@
+<section class="eyy">
+    <div  class="no">
+    
+        <a>{{projet.nom}}</a>
+        <td>
+            <mat-chip class="ey" [ngClass]="getStatusClass(projet.statut)">{{projet.statut}}</mat-chip>
+  
+          </td>
+</div>
+    <mat-tab-group>
+        <mat-tab label="Aperçu">
+            <app-apercuu></app-apercuu>
+          </mat-tab>
+        <mat-tab label="User Storie">
+         <app-backlogg></app-backlogg>
+        </mat-tab>
+        <mat-tab label="sprints">
+       <app-sprintt></app-sprintt>
+        </mat-tab>
+       
+        <mat-tab label="membre">
+            <app-membress></app-membress>
+        </mat-tab>
+        <mat-tab label="Tableau de bord">
+            <app-tbprojet></app-tbprojet>
+        </mat-tab>
+      </mat-tab-group>
+</section>

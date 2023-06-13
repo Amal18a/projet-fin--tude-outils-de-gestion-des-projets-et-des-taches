@@ -1,0 +1,65 @@
+
+<br/>
+
+<div >
+    <div >
+        <h4 >Information </h4>
+    </div>
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div ><img class="rounded-circle mt-5" width="180px" [src]="'http://127.0.0.1:3000/getimage/'+util.image">   <span class="text-black-50">{{ util.nom +'.'+util.prenom}}</span><span> </span></div>
+           
+        </div>
+        <div class="col-md-5 border-right">
+            <br/>
+            <div class="ama">
+             
+             
+                
+                <div class="col-md-12">
+                    <label class="labels">cin:</label>
+                    <br/>
+                    <label class="label">{{util.cin}}</label>
+                    </div>
+                    <br/>
+                <div class="col-md-12">
+                    <label class="labels">nom:</label>
+                    <br/>
+                    <label class="label">{{util.nom}}</label>
+                </div>
+                <br/>
+                  
+                <div class="col-md-12">
+                    <label class="labels">prenom:</label>
+                    <br/>
+                    <label class="label">{{util.prenom}}</label>
+                </div>
+                <br/>
+                <div class="col-md-12">
+                    <label class="labels">role:</label>
+                    <br/>
+                    <label class="label">{{util.role}}</label> 
+                </div>
+                <br/>
+                <div class="col-md-12">
+                    <label class="labels">Email:</label>
+                    <br/>
+                    <label class="label">{{util.email}}</label> 
+                </div>
+
+                
+                
+            </div>
+               
+                <a class="mdf"  [routerLink]="['/mdfprof', utilid]">Modifier</a>
+                <br/>
+                <br/>
+                <a class="mdp"   [routerLink]="['/mdp' , utilid]">Changer_mdp</a>
+                
+
+        </div>
+    </div>
+       
+</div>
+
+

@@ -1,0 +1,67 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-5 border-right">
+      <div class="card">
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <label class="labels">Nom du projet:</label>
+              <div *ngIf="!projet.isEditing" class="value">{{ projet.nom }}</div>
+              <input *ngIf="projet.isEditing" type="text" class="form-control" [(ngModel)]="projet.nom">
+            </li>
+            <li class="list-group-item">
+              <label class="labels">Description:</label>
+              <div *ngIf="!projet.isEditing" class="value">{{ projet.description }}</div>
+              <input *ngIf="projet.isEditing" type="text" class="form-control" [(ngModel)]="projet.description">
+            </li>
+            <li class="list-group-item">
+              <label class="labels">Chef de projet:</label>
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <img class="rounded-circle" width="50px" height="50px" [src]="'http://127.0.0.1:3000/getimage/'+ projet.chef.image" />
+                </div>
+                <div class="col">
+                  <span class="value">{{ projet.chef.nom + '.' + projet.chef.prenom }}</span>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col">
+                  <label class="labels">Date début:</label>
+                  <div *ngIf="!projet.isEditing" class="value">{{ projet.date_debut | date:'dd/MM/yyyy' }}</div>
+                  <input *ngIf="projet.isEditing" type="date" class="form-control" [(ngModel)]="projet.date_debut">
+                </div>
+                <div class="col">
+                  <label class="labels">Date fin:</label>
+                  <div *ngIf="!projet.isEditing" class="value">{{ projet.date_fin | date:'dd/MM/yyyy' }}</div>
+                  <input *ngIf="projet.isEditing" type="date" class="form-control" [(ngModel)]="projet.date_fin">
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <label class="labels">Complexité:</label>
+              <div *ngIf="!projet.isEditing" class="value">{{ projet.complexite }}</div>
+              <select *ngIf="projet.isEditing" class="form-control" [(ngModel)]="projet.complexite">
+                <option value="faible">Faible</option>
+                <option value="moyenne">Moyenne</option>
+                <option value="élevée">Élevée</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <button class="action-button" (click)="editprojet(projet)" *ngIf="!projet.isEditing">
+            <i class="fa fa-pencil"></i> Modifier
+          </button>
+          <button class="action-button" (click)="updateprojet(projet)" *ngIf="projet.isEditing">
+            <i class="fa fa-check"></i> Enregistrer
+          </button>
+          <button class="action-button" (click)="cancelEditprojet(projet)" *ngIf="projet.isEditing">
+            <i class="fa fa-times"></i> Annuler
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

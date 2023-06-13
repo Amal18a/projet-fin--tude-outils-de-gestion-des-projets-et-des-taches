@@ -1,0 +1,34 @@
+
+
+mat-toolbar {
+    background:  #068DA9;
+    color: rgb(255, 255, 255);
+    border-radius: 0px;
+  }
+  
+  mat-sidenav {
+    margin: 1px;
+    width: 200px;
+    /* border-right: none; */
+    background:  #068DA9;
+    color: rgb(255, 255, 255);
+    padding: 16px;
+    text-align: center;
+    
+  }
+.content {
+   
+    
+    margin: 3px;
+ 
+    height: calc(100vh - 65px);
+    justify-content: center;
+    align-items: center;
+
+    color: rgb(19, 18, 18);
+    
+  } 
+  mat-sidenav-container {
+    height: calc(100vh - 65px);
+  } 
+

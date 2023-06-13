@@ -1,0 +1,145 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
+.user-list {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100vh;
+}
+
+.user-list h2 {
+  margin-top: 0;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.user-list .action-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.user-list .add-button {
+  padding: 10px 15px;
+  background-color: #2196f3;
+  color: #ffffff;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.user-list .add-button:hover {
+  background-color: #0056b3;
+}
+
+.user-list .search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.user-list .search-bar input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+  color: #333;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.user-list .search-bar input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-list .search-bar button {
+  padding: 10px 15px;
+  background-color: #2196f3;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.user-list .search-bar button:hover {
+  background-color: #1976d2;
+}
+
+.user-list .user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.user-list .user-table th,
+.user-list .user-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.user-list .user-table th {
+  background-color: #f2f2f2;
+}
+
+.user-list .user-table td:last-child {
+  text-align: center;
+}
+
+.user-list a {
+  color: #888;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.user-list a:hover {
+  color: #333;
+}
+
+.user-list img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.user-list .pagination-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.user-list a i {
+  margin-right: 5px;
+}
+
+.user-list a i.fas {
+  font-size: 16px;
+}
+
+.user-list a i.fas.fa-trash-alt {
+  color: #ff0000;
+}
+
+.user-list a i.fas.fa-edit {
+  color: #2196f3;
+}
+
+.user-list a i.fas.fa-eye {
+  color: #2196f3;
+}
+.user-list h2 i.fas.fa-users {
+  font-size: 2rem;
+  margin-right: 10px;
+  color: #333;
+}

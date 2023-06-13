@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Liste des membres</h1>
+  <div *ngIf="membres" class="members-grid">
+    <div class="member-card" *ngFor="let membre of membres">
+      <img class="rounded-circle" [src]="'http://127.0.0.1:3000/getimage/'+membre.image">
+      <span> {{ membre.nom }} {{membre.prenom }}</span>
+      <button (click)="supprimerMembre(membre._id)">Supprimer</button>
+    </div>
+  </div>
+  <button (click)="afficherFormulaireAjoutMembre()">Ajouter membre</button>
+  <div *ngIf="formulaireAjoutMembreVisible" class="add-member-form">
+    <h1>Liste des membres de projet</h1>
+    <select [(ngModel)]="membreSelectionne">
+      <option *ngFor="let membre of membre" [value]="membre.nom">{{ membre.nom }} {{ membre.prenom }}</option>
+    </select>
+    <hr>
+    <h2>Ajouter un membre au projet</h2>
+    <div *ngIf="membreSelectionne">
+      Membre sélectionné : {{ membreSelectionne.nom }} {{ membreSelectionne.prenom }}
+      <button (click)="ajouterMembreAuProjet()">Ajouter au projet</button>
+    </div>
+    <div *ngIf="!membreSelectionne">
+      Aucun membre sélectionné
+    </div>
+  </div>
+</div>
+
+
+
+
+

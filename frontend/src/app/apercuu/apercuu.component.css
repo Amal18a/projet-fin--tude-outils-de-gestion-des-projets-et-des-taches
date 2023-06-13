@@ -1,0 +1,42 @@
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .card {
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .list-group-item {
+    border: none;
+    padding: 15px;
+  }
+  
+  .labels {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .value {
+    color: #666;
+  }
+  
+  .row.align-items-center {
+    margin-top: 10px;
+  }
+  
+  .col-auto {
+    margin-right: 10px;
+  }
+  
+  .rounded-circle {
+    border-radius: 50%;
+  }
+  
+
+  

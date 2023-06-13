@@ -1,0 +1,91 @@
+<div class="tous">
+<div class="container">
+  <div class="card">
+    <div class="count">{{ nbreSprints }}</div>
+    <div class="label">Sprints</div>
+    <div class="icon">
+      <i class="fas fa-chart-line"></i>
+    </div>
+  </div>
+  <div class="card">
+    <div class="count">{{ nbreMembres }}</div>
+    <div class="label">Membres</div>
+    <div class="icon">
+      <i class="fas fa-users"></i>
+    </div>
+  </div>
+  <div class="card">
+    <div class="count">{{ nbreTaches }}</div>
+    <div class="label">Tâches</div>
+    <div class="icon">
+      <i class="fas fa-tasks"></i>
+    </div>
+  </div>
+</div>
+
+
+<div class="charts-container">
+  <div class="chart">
+    <p>Sprints par statut</p>
+    <ngx-charts-pie-chart
+      [view]="view"
+      [results]="chartDataSprints"
+      [legend]="showLegend"
+      [explodeSlices]="explodeSlices"
+      [labels]="showLabels"
+      [doughnut]="isDoughnut"
+    ></ngx-charts-pie-chart>
+  </div>
+  
+  <div class="chart">
+    <p>Tâches par statut</p>
+    <ngx-charts-pie-chart
+      [view]="view"
+      [results]="chartDataTaches"
+      [legend]="showLegend"
+      [explodeSlices]="explodeSlices"
+      [labels]="showLabels"
+      [doughnut]="isDoughnut"
+    ></ngx-charts-pie-chart>
+  </div>
+
+  <div class="chart">
+    <p>Nombres de tâches par membre</p>
+    <ngx-charts-bar-vertical
+      [view]="[400, 300]"
+      [results]="chartData"
+      [xAxis]="true"
+      [yAxis]="true"
+      [legend]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      xAxisLabel="Membre"
+      yAxisLabel="Nombre de tâches"
+    ></ngx-charts-bar-vertical>
+  </div>
+
+  <div class="chart">
+    <p>Sprint terminé par rapport au total de sprints</p>
+    <ngx-charts-pie-chart
+      [view]="[400, 400]"
+      [results]="[{ name: 'Terminé', value: pourcentageTermines }, { name: 'Restant', value: 100 - pourcentageTermines }]"
+      [gradient]="true"
+      [labels]="true"
+      [legend]="true"
+      [doughnut]="true"
+    ></ngx-charts-pie-chart>
+  </div>
+
+  <div class="chart">
+    <p>Tâches terminées par rapport au total de tâches</p>
+    <ngx-charts-pie-chart
+      [view]="[400, 400]"
+      [results]="[{ name: 'Terminé', value: pourcentageTermines1 }, { name: 'Restant', value: 100 - pourcentageTermines1 }]"
+      [gradient]="true"
+      [labels]="true"
+      [legend]="true"
+      [doughnut]="true"
+    ></ngx-charts-pie-chart>
+  </div>
+</div>
+</div>

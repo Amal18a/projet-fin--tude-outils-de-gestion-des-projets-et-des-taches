@@ -1,0 +1,31 @@
+
+.en-cours{
+    background-color: #55a5e8;
+    color: #fff;
+  }
+  
+  .termine {
+    background-color: #58c55c;
+    color: #fff;
+  }
+  
+  .a-faire {
+    background-color: rgb(218, 218, 52);
+    color: #fff;
+  }
+  .default{
+    background-color: #ff0000;
+    color: #fff;
+  
+  }
+  .ey{
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    }
+  /* CSS for the .no class */
+
+  

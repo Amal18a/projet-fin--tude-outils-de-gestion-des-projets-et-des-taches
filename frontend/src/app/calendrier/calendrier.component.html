@@ -1,0 +1,5 @@
+<div id="calendar">
+  <div class="fc-event" [ngClass]="'priority-' + tache.priority" *ngFor="let tache of taches">
+    {{ tache.title }}
+  </div>
+</div>

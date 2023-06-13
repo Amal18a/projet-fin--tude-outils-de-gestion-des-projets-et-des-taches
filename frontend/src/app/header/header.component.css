@@ -1,0 +1,119 @@
+
+/* # General */
+/* --------------------------------------------------------------*/ 
+body {
+  font-family: "Open Sans", sans-serif;
+  color: #040404;
+  height: 10vh;
+  
+ 
+}
+
+a {
+  color: #f3e9e9;
+  text-decoration: none;
+ 
+}
+
+
+a:hover {
+  color: #141414;
+  text-decoration: none;
+}
+h2{
+
+  font-family: 'Pacifico', cursive;
+  margin-top: 1%;
+  
+
+
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Jost", sans-serif;
+}
+
+/**
+* Desktop Navigation 
+*/
+ .navbar {
+  padding: 0;
+  
+ 
+}
+
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  align-items: center;
+}
+
+.navbar li {
+  position: relative;
+  margin-top: 2%;
+}
+
+.navbar a,
+.navbar a:focus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0 10px 30px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fcf5f5;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.navbar a i,
+.navbar a:focus i {
+  font-size: 12px;
+  line-height: 0;
+  margin-left: 5px;
+}
+
+.navbar a:hover,
+.navbar .active,
+.navbar .active:focus,
+.navbar li:hover>a {
+  color: #9caeb6;
+}
+
+.navbar .getstarted,
+
+
+.navbar .getstarted:hover,
+.navbar .getstarted:focus:hover {
+  color: #2d2929;
+  background: #878f93;
+}
+
+
+.navbar .dropdown ul li {
+  min-width: 200px;
+}
+
+.navbar .dropdown ul a {
+  padding: 10px 20px;
+  font-size: 14px;
+  text-transform: none;
+  font-weight: 500;
+  color: #b3c4cb;
+}
+
+.navbar .dropdown ul a i {
+  font-size: 12px;
+}
+
+@media (max-width: 1366px) {
+  .navbar .dropdown .dropdown ul {
+    left: -90%;
+  }
+
+} 

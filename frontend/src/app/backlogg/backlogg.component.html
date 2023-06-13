@@ -1,0 +1,37 @@
+
+
+<br/>
+  <div class="eyy">
+    <h2>Liste des Users Stories</h2>
+ 
+    <table class="user-stories-table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>User Story</th>
+          <th>Estimation</th>
+          <th>Priorité</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let userstory of userstory | paginate: { itemsPerPage: pageSize, currentPage: p }; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>
+            <ng-container >{{ userstory.user_story }}</ng-container>
+          </td>
+          <td>
+            <ng-container>{{ userstory.estimation }}</ng-container>
+           
+          </td>
+          <td>
+            <ng-container >{{ userstory.priorite }}</ng-container>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  
+    <br/>
+    <pagination-controls  (pageChange)="p = $event"></pagination-controls>
+  </div>

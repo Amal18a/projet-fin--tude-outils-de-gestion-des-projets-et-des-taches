@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ma To-Do List</title>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h2>Sprints</h2>
+        <button class="add-section-btn" (click)="toggleSprintForm()">+</button>
+      </div>
+      <ul class="sprint-list">
+        <li class="sprint-item">
+          <div class="sprint-card" *ngIf="showSprintForm">
+            <h3>Ajouter un sprint</h3>
+            <form (submit)="addsprints()">
+              <div class="form-group">
+                <label>Nom:</label>
+                <input type="text" [(ngModel)]="Sprints.nom" name="nom" required>
+              </div>
+              <div class="form-group">
+                <label>Description:</label>
+                <textarea [(ngModel)]="Sprints.description" name="description" required></textarea>
+              </div>
+              <div class="form-group">
+                <label>Priorité:</label>
+                <input type="number" [(ngModel)]="Sprints.priorite" name="priorite" required>
+              </div>
+              <div class="form-group">
+                <label>Date de début:</label>
+                <input type="date" [(ngModel)]="Sprints.date_debut" name="date_debut" required>
+              </div>
+              <div class="form-group">
+                <label>Date de fin:</label>
+                <input type="date" [(ngModel)]="Sprints.date_fin" name="date_fin" required>
+              </div>
+              <button type="submit">Ajouter</button>
+            </form>
+          </div>
+          
+          <div class="sprint-card" *ngFor="let sprint of sprints">
+            <a>{{sprint.statut}}</a>
+            <h3>{{ sprint.nom }}</h3>
+            
+            <div>
+              <label>Description:</label>
+              <ng-container *ngIf="!sprint.isEditing">{{ sprint.description }}</ng-container>
+              <input *ngIf="sprint.isEditing" type="text" [(ngModel)]="sprint.description">
+            </div>
+            <div>
+              <label>Priorité:</label>
+              <ng-container *ngIf="!sprint.isEditing">{{ sprint.priorite }}</ng-container>
+              <input *ngIf="sprint.isEditing" type="text" [(ngModel)]="sprint.priorite">
+            </div>
+            <div>
+              <label>Date de début:</label>
+              <ng-container *ngIf="!sprint.isEditing">{{ sprint.date_debut | date:'dd/MM/yyyy' }}</ng-container>
+              <input *ngIf="sprint.isEditing" type="date" [(ngModel)]="sprint.date_debut">
+            </div>
+            <div>
+              <label>Date de fin:</label>
+              <ng-container *ngIf="!sprint.isEditing">{{ sprint.date_fin | date:'dd/MM/yyyy' }}</ng-container>
+              <input *ngIf="sprint.isEditing" type="date" [(ngModel)]="sprint.date_fin">
+            </div>
+            <div>
+              <button class="view-sprint-btn" (click)="viewSprintDetails(sprint._id)">
+                <i class="fas fa-eye"></i> 
+              </button>
+              <button class="action-button" (click)="editSprints(sprint)" *ngIf="!sprint.isEditing">
+                <i class="fa fa-pencil"></i>
+              </button>
+              <button class="action-button" (click)="updatesprints(sprint)" *ngIf="sprint.isEditing">
+                <i class="fa fa-check"></i>
+              </button>
+              <button class="action-button" (click)="cancelEditSprints(sprint)" *ngIf="sprint.isEditing">
+                <i class="fa fa-times"></i>
+              </button>
+              <button class="action-button" (click)="deleteSprints(sprint._id)" *ngIf="!sprint.isEditing">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="main-content">
+      <div class="section-header">
+        <h2>taches</h2>
+        <button class="add-task-btn" (click)="toggletacheForm()">+</button>
+      </div>
+      <div class="kanban-board">
+        <div class="task-item" *ngIf="showtacheForm">
+          
+          <form  (submit)="addtache()">
+            <h3>Ajouter une tâche</h3>
+            <label>Nom:</label>
+            <input type="text" [(ngModel)]="Taches.nom" name="nom" required>
+            <label>Description:</label>
+            <textarea [(ngModel)]="Taches.description" name="description" required></textarea>
+            <label>Date de début:</label>
+            <input type="date" [(ngModel)]="Taches.date_debut" name="date_debut" required>
+            <label>Date de fin:</label>
+            <input type="date" [(ngModel)]="Taches.date_fin" name="date_fin" required>
+            <label>Membre:</label>
+            <select name="membre" [(ngModel)]="Taches.membre" multiple>
+              <option *ngFor="let membre of membres" [ngValue]="membre._id">{{ membre.prenom }}</option>
+            </select>
+            <button type="submit">Ajouter</button>
+          </form>
+        </div>
+        <div class="task-item" *ngFor="let tache of taches">
+          <a>{{tache.statut}}</a>
+          <div>
+            <label>Nom:</label>
+            <ng-container *ngIf="!tache.isEditing">{{ tache.nom }}</ng-container>
+            <input *ngIf="tache.isEditing" type="text" [(ngModel)]="tache.nom">
+          </div>
+          <div>
+            <label>Description:</label>
+            <ng-container *ngIf="!tache.isEditing">{{ tache.description }}</ng-container>
+            <input *ngIf="tache.isEditing" type="text" [(ngModel)]="tache.description">
+          </div>
+          <div>
+            <label>Date de début:</label>
+            <ng-container *ngIf="!tache.isEditing">{{ tache.date_debut | date:'dd/MM/yyyy' }}</ng-container>
+            <input *ngIf="tache.isEditing" type="date" [(ngModel)]="tache.date_debut">
+          </div>
+          <div>
+            <label>Date de fin:</label>
+            <ng-container *ngIf="!tache.isEditing">{{ tache.date_fin | date:'dd/MM/yyyy' }}</ng-container>
+            <input *ngIf="tache.isEditing" type="date" [(ngModel)]="tache.date_fin">
+          </div>
+         
+
+          <div>
+            <label>Membre:</label>
+            <ng-container *ngIf="!tache.isEditing">{{ tache.membre.nom }}</ng-container>
+            <select *ngIf="tache.isEditing" name="membres" [(ngModel)]="tache.membre" multiple>
+              <option *ngFor="let membre of membres" [ngValue]="membre._id">{{membre.prenom}}</option>
+            </select>
+          </div>
+
+          <button class="action-button" (click)="edittaches(tache)" *ngIf="!tache.isEditing">
+            <i class="fa fa-pencil"></i>
+          </button>
+          <button class="action-button" (click)="updatetaches(tache)" *ngIf="tache.isEditing">
+            <i class="fa fa-check"></i>
+          </button>
+          <button class="action-button" (click)="cancelEdittache(tache)" *ngIf="tache.isEditing">
+            <i class="fa fa-times"></i>
+          </button>
+          <button class="action-button" (click)="deletetache(tache._id)" *ngIf="!tache.isEditing">
+            <i class="fa fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</body>
+</html>

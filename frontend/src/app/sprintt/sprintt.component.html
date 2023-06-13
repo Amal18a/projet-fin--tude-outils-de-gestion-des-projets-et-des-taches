@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ma To-Do List</title>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h2>Sprints</h2>
+        
+      </div>
+      <ul class="sprint-list">
+        <li class="sprint-item">
+
+          
+          <div class="sprint-card" *ngFor="let sprint of sprints">
+            <a>{{sprint.statut}}</a>
+            <h3>{{ sprint.nom }}</h3>
+            
+            <div>
+              <label>Description:</label>
+              <ng-container >{{ sprint.description }}</ng-container>
+             
+            </div>
+            <div>
+              <label>Priorité:</label>
+              <ng-container >{{ sprint.priorite }}</ng-container>
+             
+            </div>
+            <div>
+              <label>Date de début:</label>
+              <ng-container>{{ sprint.date_debut | date:'dd/MM/yyyy' }}</ng-container>
+             
+            </div>
+            <div>
+              <label>Date de fin:</label>
+              <ng-container >{{ sprint.date_fin | date:'dd/MM/yyyy' }}</ng-container>
+              
+            </div>
+            <div>
+              <button class="view-sprint-btn" (click)="viewSprintDetails(sprint._id)">
+                <i class="fas fa-eye"></i> 
+              </button>
+     
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="main-content">
+      <div class="section-header">
+        <h2>taches</h2>
+       
+      </div>
+      <div class="kanban-board">
+
+        <div class="task-item" *ngFor="let tache of taches">
+          <a>{{tache.statut}}</a>
+          <div>
+            <label>Nom:</label>
+            <ng-container *ngIf="!tache.isEditing">{{ tache.nom }}</ng-container>
+          
+          </div>
+          <div>
+            <label>Description:</label>
+            <ng-container *ngIf="!tache.isEditing">{{ tache.description }}</ng-container>
+            
+          </div>
+          <div>
+            <label>Date de début:</label>
+            <ng-container *ngIf="!tache.isEditing">{{ tache.date_debut | date:'dd/MM/yyyy' }}</ng-container>
+           
+          </div>
+          <div>
+            <label>Date de fin:</label>
+            <ng-container *ngIf="!tache.isEditing">{{ tache.date_fin | date:'dd/MM/yyyy' }}</ng-container>
+           
+          </div>
+         
+
+          <div>
+            <label>Membre:</label>
+            <ng-container >{{ tache.membre.nom }}</ng-container>
+          
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</body>
+</html>

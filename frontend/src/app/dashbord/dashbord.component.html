@@ -1,0 +1,152 @@
+<p class="welcome">Bienvenue, {{ this.prenom }}</p>
+<div class="tous">
+<div class="container">
+  <div *ngIf="isAdmin" class="chart-section">
+    <div class="card-group">
+      <div class="card">
+        <div class="count">{{ nombreProjets }}</div>
+        <div class="label">Nombre de projets</div>
+      </div>
+      <div class="card">
+        <div class="count">{{ nombreProjets1 }}</div>
+        <div class="label">Nombre de projets des 30 derniers jours</div>
+      </div>
+      <div class="card">
+        <div class="count">{{ nombreUtils }}</div>
+        <div class="label">Nombre d'utilisateurs</div>
+      </div>
+
+     
+
+    </div>
+    <div class="chart-wrapper">
+      <h3>Meilleur membre</h3>
+      <img width="250px" height="250px" [src]="'http://127.0.0.1:3000/getimage/'+ maxmembre?.image" />
+      <p> {{ maxmembre?.membre }}</p>
+      <p>Nombre des tâches : {{ maxmembre?.nombreMaxTaches }}</p>
+    </div>
+    <div class="chart-wrapper">
+      <h3>Nombre d'utilisateurs par rôle</h3>
+      <ngx-charts-pie-chart
+        class="chart"
+        [view]="view"
+        [results]="chartData"
+        [legend]="showLegend"
+        [explodeSlices]="explodeSlices"
+        [labels]="showLabels"
+        [doughnut]="isDoughnut"
+      ></ngx-charts-pie-chart>
+    </div>
+    <div class="chart-wrapper">
+      <h3>Nombre de projets par complexité</h3>
+      <ngx-charts-pie-chart
+        class="chart"
+        [view]="view"
+        [results]="chartData1"
+        [legend]="showLegend"
+        [explodeSlices]="explodeSlices"
+        [labels]="showLabels"
+        [doughnut]="isDoughnut"
+      ></ngx-charts-pie-chart>
+    </div>
+    
+    <div class="chart-wrapper">
+      <h3>projet par mois</h3>
+      <ngx-charts-line-chart
+        class="line-chart-container"
+        [view]="view"
+        [results]="chartData6"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+      ></ngx-charts-line-chart>
+    </div>
+    <div class="chart-wrapper">
+      <p>Nombres de tâches par membre</p>
+      <ngx-charts-bar-vertical
+        [view]="[400, 300]"
+        [results]="chartData7"
+        [xAxis]="true"
+        [yAxis]="true"
+        [legend]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        xAxisLabel="Membre"
+        yAxisLabel="Nombre de tâches"
+      ></ngx-charts-bar-vertical>
+    </div>
+  </div>
+
+  <div *ngIf="isMembre" class="chart-section">
+    <div class="chart-wrapper">
+      <h3>Tâches par statut</h3>
+      <ngx-charts-pie-chart
+        class="chart"
+        [view]="view"
+        [results]="chartData2"
+        [legend]="showLegend"
+        [explodeSlices]="explodeSlices"
+        [labels]="showLabels"
+        [doughnut]="isDoughnut"
+      ></ngx-charts-pie-chart>
+    </div>
+    <div class="card">
+      <div class="count">{{ nombreProjetsMembre }}</div>
+      <div class="label">Nombre de projets</div>
+    </div>
+    <div class="chart-wrapper">
+      <h3>Tâches par mois</h3>
+      <ngx-charts-line-chart
+        class="line-chart-container"
+        [view]="view"
+        [results]="chartData3"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+      ></ngx-charts-line-chart>
+    </div>
+  </div>
+
+  <div *ngIf="isChef" class="chart-section">
+    <div class="chart-wrapper">
+      <h3>Nombre de projets par statut</h3>
+      <ngx-charts-pie-chart
+        class="chart"
+        [view]="view"
+        [results]="chartData4"
+        [legend]="showLegend"
+        [explodeSlices]="explodeSlices"
+        [labels]="showLabels"
+        [doughnut]="isDoughnut"
+      ></ngx-charts-pie-chart>
+    </div>
+    <div class="card">
+      <div class="count">{{ nombreProjetsChef }}</div>
+      <div class="label">Nombre de projets</div>
+    </div>
+    <div class="chart-wrapper">
+      <h3>Projets par mois</h3>
+      <ngx-charts-line-chart
+        class="line-chart-container"
+        [view]="view"
+        [results]="chartData5"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+      ></ngx-charts-line-chart>
+    </div>
+  </div>
+</div>
+</div>

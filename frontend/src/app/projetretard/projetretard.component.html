@@ -1,0 +1,48 @@
+<div class="project-list">
+  <h2><i class="fas fa-folder"></i> Liste des projets en retard</h2>
+
+  <div class="action-buttons">
+
+  
+  </div>
+  <br/>
+<table class="user-stories-table">
+    <thead>
+      <tr>
+       
+        <th>Nom du projet</th>
+        <th>complexite</th>
+        <th>statut</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="projets">
+    
+    <tr *ngFor="let p of projets| paginate: { itemsPerPage: pageSize, currentPage: p }">
+     
+      <td>{{ p.nom }}</td>
+     
+    
+      <td>
+        <mat-chip class="ey" [ngClass]="p.complexite ? getComplexityClass(p.complexite) : ''">{{p.complexite}}</mat-chip>
+      </td>
+      <td>
+        <mat-chip class="ey" [ngClass]="getStatusClass(p.statut)">{{p.statut}}</mat-chip>
+      </td>
+      <td>
+        <a ><i class="fas fa-trash-alt"></i></a>
+
+        <a  [routerLink]="['/proj', p._id]" ><i class="fas fa-pencil"></i></a>
+          <a  [routerLink]="['/projj', p._id]"><i class="fas fa-eye"></i></a>
+      </td>
+      
+    </tr>
+  </ng-container>   
+
+    
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+  

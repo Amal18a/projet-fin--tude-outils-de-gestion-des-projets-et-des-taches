@@ -1,0 +1,47 @@
+/* Calendrier */
+#calendar {
+    max-width: 1000px;
+    margin: 0 auto;
+    height: 85vh;
+  }
+  
+  /* Événements */
+  .event-todo,
+  .event-inprogress,
+  .late-event,
+  .event-done {
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .event-todo {
+    background-color: #FFCC80;
+    color: #000;
+  }
+  
+  .event-inprogress {
+    background-color: #64B5F6;
+    color: #FFF;
+  }
+  
+  .late-event {
+    background-color: #E57373;
+    color: #FFF;
+  }
+  
+  .event-done {
+    background-color: #81C784;
+    color: #000;
+  }
+  
+  /* Titre de l'événement */
+  .event-title {
+    font-weight: bold;
+  }
+  
+  /* Carte de l'événement */
+  .event-card {
+    margin-bottom: 10px;
+  }
+  

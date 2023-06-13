@@ -1,0 +1,62 @@
+<div class="project-list">
+  <h2><i class="fas fa-folder"></i> Liste des projets</h2>
+
+  <div class="action-buttons">
+    <button class="add-button" routerLink="/addproj" *ngIf="isChef">
+      <i class="fas fa-plus"></i> Ajouter un projet
+    </button>
+    <div class="search-bar">
+      <input type="text" [(ngModel)]="nom" (keyup)="searchProjet(nom)" placeholder="Rechercher un projet...">
+      <button class="search-button" (click)="searchProjet(nom)">
+        <i class="fas fa-search"></i> Rechercher
+      </button>
+    </div>
+  </div>
+
+  <table class="project-table">
+    <thead>
+      <tr>
+        <th>Nom du projet</th>
+        <th>Chef</th> 
+        <th>Complexité</th>
+        <th>Statut</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="projet">
+        <tr *ngFor="let p of projet | paginate: { itemsPerPage: pageSize, currentPage: p }">
+          <td>{{ p.nom }}</td>
+          <td>{{ p.chef?.nom }}</td>
+          <td>
+            <mat-chip class="complexity-chip" [ngClass]="p.complexite ? getComplexityClass(p.complexite) : ''">
+              {{ p.complexite }}
+            </mat-chip>
+          </td>
+          <td>
+            <mat-chip class="status-chip" [ngClass]="getStatusClass(p.statut)">
+              {{ p.statut }}
+            </mat-chip>
+          </td>
+          <td>
+            <a *ngIf="isChef" (click)="deleteUtil(p._id)">
+              <i class="fas fa-trash-alt"></i>
+            </a>
+            <a *ngIf="isChef" [routerLink]="['/proj', p._id]">
+              <i class="fas fa-edit"></i>
+            </a>
+            <a [routerLink]="['/projj', p._id]">
+              <i class="fas fa-eye"></i>
+            </a>
+          </td>
+        </tr>
+        <tr *ngIf="nom && projet.length === 0">
+          <td colspan="5">Aucun projet trouvé.</td>
+        </tr>
+      </ng-container>
+      
+    </tbody>
+  </table>
+
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

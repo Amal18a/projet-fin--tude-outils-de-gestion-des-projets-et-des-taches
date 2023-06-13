@@ -1,0 +1,113 @@
+body {
+    background: rgb(255, 255, 255)
+}
+/* .row{
+  
+    width: 760px;
+    margin-left: 15%;
+    border-radius: 30px;
+    box-shadow: 3px 3px 7px;
+    height: 500px;
+    margin-top: 2%;
+   
+} */
+input{
+    width: 250px;
+}
+h4{
+      font-family: 'Pacifico', cursive;
+  color: #371c9c;
+  margin-left: 12%;
+ 
+}
+
+hr{
+    background-color: black;
+    width: 390px;
+    border: 3px solid;
+     
+}
+.ama{
+    margin-left: 35%;
+    margin-top: 5%;
+    margin-bottom: 7%;
+}
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+img{
+    margin-left: 35%;
+    margin-bottom: 12%;
+}
+span{
+    margin-left: 35%;
+}
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 17px;
+    text-transform: uppercase;
+    font-family: 'Pacifico', cursive;
+  }
+.label{
+    font-size: 15px;
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+
+.mdf {
+    background-color: rgb(62, 17, 160);
+    padding: 14px 40px;
+    color: #ffffff;
+    
+  
+   
+    border-radius: 10px;
+    border: 2px blue;
+  
+    transition: .4s;
+   
+    margin-left: 108%;
+    margin-top: 10%;
+ 
+   }
+   
+
+.mdp{
+   
+    padding-left: 114%;
+   
+   }
+
+
+   

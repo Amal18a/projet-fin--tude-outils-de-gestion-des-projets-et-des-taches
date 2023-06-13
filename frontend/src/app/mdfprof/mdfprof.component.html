@@ -1,0 +1,57 @@
+
+<br/>
+
+<div >
+    <div >
+        <h4 class="text-right">Modifier:</h4>
+        
+ <h5>{{ util.nom +'.'+util.prenom}} </h5>
+    </div>
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="180px" [src]="'http://127.0.0.1:3000/getimage/'+util.image">  
+              <div class="col-md-12">
+                <h5> Image</h5>
+                <input type="file" name="image" (change)="onFileChange($event)">
+
+            </div>
+            <span> </span></div>
+           
+        </div>
+        <div class="col-md-5 border-right">
+            <br/>
+            <div class="ama">
+             
+            
+                
+                <div class="col-md-12">
+                  <label class="labels">id:</label>
+                  <br/>
+                  <input [(ngModel)]="util._id"  type="text" class="inp my-3 px-3" id="_id" name="_id"  placeholder="id">
+                </div>
+              
+
+                    
+                <div class="col-md-12">
+                    <label class="labels">nom:</label>
+                    <br/>
+                    <input [(ngModel)]="util.nom"  type="text" class="inp my-3 px-3" id="nom" name="nom" placeholder="nom">
+                </div>
+                
+                  
+                <div class="col-md-12">
+                    <label class="labels">prenom:</label>
+                    <br/>
+                    <input [(ngModel)]="util.prenom"  type="text" class="inp my-3 px-3" id="prenom" name="prenom" placeholder="prenom">
+                </div>
+              
+            </div>
+               
+                <button (click)="onSubmit()">Enregistrer</button>
+                <a class="retour" [routerLink]="['/profil', utilid]">Retour</a>
+
+        </div>
+    </div>
+       
+</div>
+

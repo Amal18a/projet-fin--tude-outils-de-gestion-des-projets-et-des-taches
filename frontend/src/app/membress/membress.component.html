@@ -1,0 +1,11 @@
+<div class="container">
+    <h1>Liste des membres</h1>
+    <div *ngIf="membres" class="members-grid">
+      <div class="member-card" *ngFor="let membre of membres">
+        <img class="rounded-circle" [src]="'http://127.0.0.1:3000/getimage/'+membre.image">
+        <span> {{ membre.nom }} {{membre.prenom }}</span>
+     
+      </div>
+    </div>
+
+  </div>

@@ -1,0 +1,63 @@
+
+<div class="user-list">
+  <h2><i class="fas fa-users fa-2x"></i>Liste des utilisateurs</h2>
+
+  <div class="action-buttons">
+    <button class="add-button" routerLink="/add">Ajouter un utilisateur</button>
+    <div class="search-bar">
+      <input type="text" [(ngModel)]="prenom" placeholder="Rechercher un membre...">
+      <button (click)="rechercher()"><i class="fas fa-search"></i>Rechercher</button>
+    </div>
+  </div>
+
+  <table class="user-table">
+    <thead>
+      <tr>
+        <th>Photo</th>
+        <th>CIN</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="utilFiltres.length > 0; else listeUtilisateurs">
+        <tr *ngFor="let util of utilFiltres">
+          <td>
+            <img [src]="'http://127.0.0.1:3000/getimage/' + util.image">
+          </td>
+          <td>{{ util.cin }}</td>
+          <td>{{ util.nom }}</td>
+          <td>{{ util.prenom }}</td>
+          <td>{{ util.email }}</td>
+          <td>
+            <a (click)="deleteUtil(util.cin)"><i class="fas fa-trash-alt"></i></a>
+            <a [routerLink]="['/update', util.cin]"><i class="fas fa-edit"></i></a>
+            <a [routerLink]="['/profil', util.cin]"><i class="fas fa-eye"></i></a>
+          </td>
+        </tr>
+      </ng-container>
+
+      <ng-template #listeUtilisateurs>
+        <tr *ngFor="let util of utils | paginate: { itemsPerPage: pageSize, currentPage: p }">
+          <td>
+            <img [src]="'http://127.0.0.1:3000/getimage/' + util.image">
+          </td>
+          <td>{{ util.cin }}</td>
+          <td>{{ util.nom }}</td>
+          <td>{{ util.prenom }}</td>
+          <td>{{ util.email }}</td>
+          <td>
+            <a (click)="deleteUtil(util.cin)"><i class="fas fa-trash-alt"></i></a>
+            <a [routerLink]="['/update', util.cin]"><i class="fas fa-edit"></i></a>
+            <a [routerLink]="['/consulterutil', util.cin]"><i class="fas fa-eye"></i></a>
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+
+  <br/>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

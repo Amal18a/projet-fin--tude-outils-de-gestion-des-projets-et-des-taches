@@ -1,0 +1,76 @@
+*{
+  padding-top: 50%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+}
+body{
+   /* background-color: rgb(130, 133, 228); */
+ 
+   background-image: url("src/assets/img/cx.svG");
+   background-repeat: no-repeat;
+   background-size: 28%;
+ background-position: 90%;
+
+   
+} 
+
+.row{
+  margin-top: 80px;
+  background:rgb(255, 255, 255);
+  border-radius: 30px;
+  box-shadow: 3px 3px 7px;
+  height: 450px;
+  width: 520px;
+   margin-left: 21%;
+
+}
+section{
+  width: 580px;
+  height: 450px;
+  margin-left: 10%;
+}
+
+
+
+ h3{
+    font-size:3.5rem;
+    font-weight: 700;
+    font-family: Century Gothic;
+    color: rgb(62, 17, 160);
+    margin-left: 25%;
+}
+.inp{
+    height: 50px;
+    width: 70%;
+    border-color: black;
+    outline: none;
+    border-radius :60px; 
+    margin-left: 17%;
+   
+   
+
+}
+
+
+.btn1{
+  height: 50px;  
+  width: 240px;
+  border: none;
+  outline: none;
+  border-radius : 60px;
+  font-weight: 600;
+  background:rgb(62, 17, 160);
+  color: white;
+  
+  margin-left: 29%;
+}
+.btn1:hover{
+    background: rgb(62, 17, 160);
+    transition: 0.5s;
+}
+a{
+  margin-left:38%;
+
+}

@@ -1,0 +1,56 @@
+
+
+<br/>
+<br/>
+
+<div >
+  <div >
+    <h4 >Modifer:  </h4>
+    <h5>{{ util.nom +'.'+util.prenom}}</h5>
+    
+</div>
+    <div class="row">
+      
+        <div class="col-md-5 border-right">
+            
+            <div class="ama">
+             
+             
+               
+                <div class="mor">
+             
+                    
+                <div class="col-md-12">
+                    <label class="labels">nom:</label>
+                    <input [(ngModel)]="util.nom"  type="text" class="inp my-3 px-3" id="nom" name="nom" placeholder="nom">
+                </div>
+                
+                  
+                <div class="col-md-12">
+                    <label class="labels">prenom:</label>
+                    <input [(ngModel)]="util.prenom"  type="text" class="inp my-3 px-3" id="prenom" name="prenom" placeholder="prenom">
+                </div>
+                
+                <div class="col-md-12">
+                    <label class="labels">role:</label>
+                    <input [(ngModel)]="util.role"  type="text" class="inp my-3 px-3" id="role" name="role" placeholder="role">
+                </div>
+                <div class="col-md-12">
+                  <label class="labels">email:</label>
+                  <input [(ngModel)]="util.email"  type="email" class="inp my-3 px-3" id="email" name="email" placeholder="email">
+              </div>
+            </div>
+                
+
+                
+                
+           
+               
+                <button class="btn1" (click)="onSubmit()">Enregistrer</button>
+                <a class="retour" [routerLink]="['/util']">Retour</a>
+              </div>
+        </div>
+    </div>
+       
+</div>
+
