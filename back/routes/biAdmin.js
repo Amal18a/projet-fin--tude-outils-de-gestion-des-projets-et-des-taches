@@ -30,30 +30,35 @@ router.get('/calculer-utilisateurs', async (req, res) => {
   });
 
 // api pour calculer le nbre de projet par complexité
-  router.get('/nombre-projets-par-complexite', async (req, res) => {
-    try {
-      const projets = await Projet.find();
-      const complexites = projets.map(projet => projet.complexite);
-  
-      const nombreProjetsParComplexite = {};
-      for (const complexite of complexites) {
-        if (nombreProjetsParComplexite[complexite]) {
-          nombreProjetsParComplexite[complexite]++;
-        } else {
-          nombreProjetsParComplexite[complexite] = 1;
-        }
+router.get('/nombre-projets-par-complexite', async (req, res) => {
+  try {
+    const projets = await Projet.find();
+    const complexites = projets.map(projet => projet.complexite);
+
+    // Créer un objet pour stocker le nombre de projets par complexité
+    const nombreProjetsParComplexite = {};
+
+    // Parcourir chaque complexité
+    for (const complexite of complexites) {
+      if (nombreProjetsParComplexite[complexite]) {
+        // Si la complexité existe déjà dans l'objet, incrémenter le compteur
+        nombreProjetsParComplexite[complexite]++;
+      } else {
+        // Sinon, initialiser le compteur à 1
+        nombreProjetsParComplexite[complexite] = 1;
       }
-  
-      res.json(nombreProjetsParComplexite);
-    } catch (error) {
-      res.status(500).json({ message: 'Erreur lors du calcul du nombre de projets par complexité' });
     }
-  });
-  
+    res.json(nombreProjetsParComplexite);
+  } catch (error) {
+    res.status(500).json({ message: 'Erreur lors du calcul du nombre de projets par complexité' });
+  }
+});
+
 
   // api pour calculer le nbre total de projets
   router.get('/projetsnb', async (req, res) => {
     try {
+         // Compter le nombre total de documents dans la collection Projet
       const count = await Projet.countDocuments();
       res.json({ nombreProjets: count });
     } catch (error) {
@@ -173,27 +178,6 @@ router.get('/nombre-par-mois', async (req, res) => {
       }
     });
 
-// nbre des taches par membre
-    router.get('/nombre-taches-par-membre', async (req, res) => {
-      try {
-        const taches = await Tache.find();
-        const membres = taches.map(tache => tache.membre.toString());
-        const membresUniques = [...new Set(membres)];
-    
-        const nombreTachesParMembre = membresUniques.map(membre => {
-          const tachesDuMembre = taches.filter(tache => tache.membre.toString() === membre);
-          return {
-            membre: membre,
-            nombreTaches: tachesDuMembre.length
-          };
-        });
-    
-        res.json(nombreTachesParMembre);
-      } catch (error) {
-        res.status(500).json({ message: 'Erreur lors du calcul du nombre de tâches par membre' });
-      }
-    });
-
 
     // meilleur membre
 router.get('/nombre-max-taches-par-membre', async (req, res) => {
@@ -223,5 +207,12 @@ router.get('/nombre-max-taches-par-membre', async (req, res) => {
     res.status(500).json({ message: 'Erreur lors du calcul du nombre maximum de tâches par membre' });
   }
 });
+
+
+
+
+
+
+
 
 module.exports = router;

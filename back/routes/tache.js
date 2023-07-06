@@ -155,49 +155,27 @@ router.post('/add/:id', async (req, res) => {
         const memberId = req.params.memberId;
         const projectId = req.params.projectId;
     
-        const taches = await Tache.aggregate([
-          {
-            $match: {
-              membre: mongoose.Types.ObjectId(memberId),
-              terminer: true
+        // Recherche des tâches terminées pour un membre spécifique et un projet spécifique
+        const taches = await Tache.find({ membre: memberId, terminer: true })
+          .populate({
+            path: 'sprint',
+            populate: {
+              path: 'projet',
+              match: { _id: projectId } // Filtre sur le projet spécifique
             }
-          },
-          {
-            $lookup: {
-              from: 'sprints',
-              localField: 'sprint',
-              foreignField: '_id',
-              as: 'sprint'
-            }
-          },
-          {
-            $unwind: '$sprint'
-          },
-          {
-            $lookup: {
-              from: 'projets',
-              localField: 'sprint.projet',
-              foreignField: '_id',
-              as: 'sprint.projet'
-            }
-          },
-          {
-            $unwind: '$sprint.projet'
-          },
-          {
-            $match: {
-              'sprint.projet._id': mongoose.Types.ObjectId(projectId)
-            }
-          }
-        ]);
+          })
+          .exec();
     
-        res.status(200).send(taches);
+        // Filtrer les tâches ayant une correspondance valide dans la jointure
+        const tachesFiltrees = taches.filter((tache) => tache.sprint && tache.sprint.projet);
+    
+        // Envoi des tâches terminées en réponse
+        res.status(200).send(tachesFiltrees);
       } catch (error) {
         console.error(error);
         res.status(500).send(error);
       }
     });
-    
     
      // tache en cours d'un membres spécifique dans un projet spécifique
     router.get('/enCours/:memberId/:projectId', async (req, res) => {
@@ -292,7 +270,7 @@ router.post('/add/:id', async (req, res) => {
         });
     });
 
-  
+  // tache d'un membre specifique
     router.get('/membrespartaches/:id', async (req, res) => {
       const { id } = req.params;
     

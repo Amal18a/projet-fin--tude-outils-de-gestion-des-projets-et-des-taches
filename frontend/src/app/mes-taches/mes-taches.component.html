@@ -3,11 +3,12 @@
 <div class="container">
     <div class="sidebar">
       <div class="project-selection">
-        <h5>Sélectionnez un projet :</h5>
+        <br/>
+        <h4><i class="fas fa-folder"></i>  Mes projets</h4>
         <mat-nav-list>
             <mat-list-item *ngFor="let projet of projets" (click)="selectProject(projet)">
               <div class="project-item">
-                <mat-icon mat-list-icon>folder</mat-icon>
+                <!-- <mat-icon mat-list-icon>folder</mat-icon> -->
                 <span mat-line class="project-name">{{ projet.nom }}</span>
               </div>
             </mat-list-item>
@@ -16,11 +17,28 @@
     </div>
     <div class="content">
       <div class="header">
-        <h1>Mes Tâches</h1>
+  
+        <h4><i class="fas fa-tasks"></i>  Mes taches</h4>
       </div>
       <div class="task-section">
+  
         <div class="task-column">
-          <h2>En cours</h2>
+          <h2 class="afaire">A faire</h2>
+          <div>
+            <div *ngFor="let tache of tachesAfaire" class="task-item todo">
+              <div class="task-item-content">
+                <h4>{{ tache.nom }}</h4>
+                <p><strong>description : </strong>{{ tache.description }}</p>
+                <p><strong>date de debut : </strong>{{ tache.date_debut | date:'dd/MM/yyyy' }}</p>
+                <p><strong>date de fin : </strong>{{ tache.date_fin | date:'dd/MM/yyyy' }}</p>
+                <p><strong>sprint : </strong>{{ tache.sprint.nom }}</p>
+              
+              </div>
+            </div>
+        </div>
+        </div>
+        <div class="task-column">
+          <h2 class="encours">En cours</h2>
           <div>
             <div *ngFor="let tache of tachesEncours" class="task-item in-progress">
               <div class="task-item-content">
@@ -47,22 +65,7 @@
         </div>
         </div>
         <div class="task-column">
-          <h2>A faire</h2>
-          <div>
-            <div *ngFor="let tache of tachesAfaire" class="task-item todo">
-              <div class="task-item-content">
-                <h4>{{ tache.nom }}</h4>
-                <p><strong>description : </strong>{{ tache.description }}</p>
-                <p><strong>date de debut : </strong>{{ tache.date_debut | date:'dd/MM/yyyy' }}</p>
-                <p><strong>date de fin : </strong>{{ tache.date_fin | date:'dd/MM/yyyy' }}</p>
-                <p><strong>sprint : </strong>{{ tache.sprint.nom }}</p>
-              
-              </div>
-            </div>
-        </div>
-        </div>
-        <div class="task-column">
-          <h2>En retard</h2>
+          <h2 class="retard">En retard</h2>
           <div>
             <div *ngFor="let tache of tachesEnretard" class="task-item overdue">
               <div class="task-item-content">
@@ -89,7 +92,7 @@
         </div>
         </div>
         <div class="task-column">
-          <h2>Terminées</h2>
+          <h2 class="terminer">Terminées</h2>
           <div>
             <div *ngFor="let tache of tachesTerminer" class="task-item completed">
               <div class="task-item-content">

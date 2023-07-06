@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProjetserviceService } from '../projetservice.service';
@@ -10,8 +11,8 @@ import { ProjetserviceService } from '../projetservice.service';
 export class ProjComponent {
   projet:any;
   afficherCodeHTML = false;
-
-  constructor(private route: ActivatedRoute , private projetservice: ProjetserviceService) { }
+  pourcentageTermines: number=0;
+  constructor(private http: HttpClient,private route: ActivatedRoute , private projetservice: ProjetserviceService) { }
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const id = params['_id'];
@@ -19,8 +20,11 @@ export class ProjComponent {
       this.projetservice.getByid(id).subscribe((data) => {
         this.projet = data;
         console.log(this.projet)
+   
+
       });
     });
+    this.getPourcentageTermines();
   }
   getStatusClass(statut: string): string {
     switch (statut.toLowerCase()) {
@@ -34,4 +38,17 @@ export class ProjComponent {
         return 'default';
     }
   }
+  getPourcentageTermines() {
+    const projetId = this.route.snapshot.paramMap.get('_id');
+  
+    this.http.get<any[]>(`http://localhost:3000/biProj/pourcentage-termine/${projetId}`).subscribe(
+      (response: any) => {
+        this.pourcentageTermines = parseFloat(response.pourcentageTerminé.toFixed(2));
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
+  
+}
 }

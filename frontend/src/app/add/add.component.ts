@@ -31,6 +31,12 @@ export class AddComponent implements OnInit {
   }
  
   addUtil() {
+    // Vérifier les champs vides
+    if (!this.utili.email || !this.utili.role || !this.utili.cin || !this.utili.mot_de_passe ) {
+      window.alert('Veuillez remplir tous les champs');
+      return;
+    }
+  
     const fd = new FormData();
     fd.append('nom', this.utili.nom);
     fd.append('prenom', this.utili.prenom);
@@ -39,16 +45,23 @@ export class AddComponent implements OnInit {
     fd.append('cin', this.utili.cin);
     fd.append('mot_de_passe', this.utili.mot_de_passe)
     fd.append('image', this.image);
-
+  
     this.utilService.addUtil(fd)
-    .subscribe(
-      res=>{
-        this.router.navigate(['/util']);
-        window.alert('Utilisateur ajouté avec succès!');
-      },
-      err=> {
-        console.log(err);
-      }
-    );
+      .subscribe(
+        res => {
+          this.router.navigate(['/util']);
+          window.alert('Utilisateur ajouté avec succès!');
+        },
+        err => {
+          // Afficher l'alerte appropriée selon le message d'erreur
+          if (err.error === "L'adresse e-mail existe déjà") {
+            window.alert("L'adresse e-mail existe déjà");
+          } else if (err.error === "Le cin existe déjà") {
+            window.alert('Le cin existe déjà');
+          } else {
+            console.log(err);
+          }
+        }
+      );
   }
-}
+}  

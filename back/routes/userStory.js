@@ -109,9 +109,7 @@ router.delete('/delete/:id', async function(req, res) {
     }
 });
 
-
-
-  //afficher tous les backlog d'un projet
+  //afficher  le backlog d'un projet
 router.get('/userstories/:id', async (req, res) => {
     try {
       const projectId = req.params.id;

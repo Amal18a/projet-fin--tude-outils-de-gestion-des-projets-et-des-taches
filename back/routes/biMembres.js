@@ -103,6 +103,21 @@ router.get('/calculer-taches11/:membreId', async (req, res) => {
 
 return nomsMois[numeroMois - 1];
 }
+// nbre total de taches d'un membre
+router.get('/nombre-taches/:membreId', async (req, res) => {
+  try {
+    const membreId = req.params.membreId;
+
+    const nombreTaches = await Tache.countDocuments({ membre: membreId });
+
+    res.json({ nombreTaches });
+  } catch (error) {
+    res.status(500).json({ message: 'Erreur lors du calcul du nombre de tâches' });
+  }
+});
+
+
+
 
 
 module.exports = router;

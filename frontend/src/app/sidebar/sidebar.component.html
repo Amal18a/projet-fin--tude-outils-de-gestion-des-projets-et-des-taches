@@ -2,9 +2,9 @@
    
     <ul class="nav-links">
      
-      <li><a href="/dashbord"><i class="fas fa-file-alt fa-2x"></i><p>tableau de bord</p></a></li>
+      <li><a href="/dashbord"><i class="fas fa-chart-line"></i><p>tableau de bord</p></a></li>
       <li><a href="/util" *ngIf="isAdmin"><i class="fas fa-users fa-2x"></i><p>Utilisateurs</p></a></li>
-      <li><a href="/projet"><i class="fas fa-tasks fa-2x"></i><p>Projets</p></a></li>
+      <li><a href="/projet"><i class="fas fa-folder fa-2x"></i><p>Projets</p></a></li>
       <li><a href="/projetretard" *ngIf="isChef"><i class="fas fa-exclamation-triangle fa-2x"></i><p>Projet retard</p></a></li>
       
       <li><a href="/mes-taches" *ngIf="isMembre"><i class="fas fa-tasks fa-2x"></i><p>Mes Taches</p></a></li>
@@ -12,7 +12,7 @@
       <li><a  [routerLink]="['/profil', _auth.getDataUser().utilid]"><i class="fas fa-user fa-2x"></i> profil</a></li>
     
     </ul>
-<br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/>
     <ul class="nav">
       
       <li><i class="fas fa-sign-out-alt fa-2x"  (click)="logout()"></i><p (click)="logout()">Logout</p></li>

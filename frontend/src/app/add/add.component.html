@@ -1,51 +1,59 @@
-
- <form (submit)="addUtil()" >
- <div >
+<form (submit)="addUtil()">
   <br/>
- <h3><i class="add-user fas fa-user-plus"></i>  Ajouter un membre</h3>
-     
-         <div class="col-md-5 border-right">
-             
-             <div class="ama">
-                 <div class="mor">
-                 
-                  
-                  <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">CIN</label>
-                      <input [(ngModel)]="utili.cin"  type="text" id="cin" name="cin"  placeholder="cin" required></div>
+  <h2><i class="add-user fas fa-user-plus"></i>  Ajouter un membre</h2>
+
+  <div class="form-container">
+    <div class="form-column">
+      <div class="form-row">
+        <label for="cin" class="labels">CIN</label>
+        <input [(ngModel)]="utili.cin" type="text" id="cin" name="cin" placeholder="cin" required>
+      </div>
+      <div class="form-row">
+        <label for="mot_de_passe" class="labels">MDP</label>
+        <input [(ngModel)]="utili.mot_de_passe" type="password"  id="mot_de_passe" name="mot_de_passe" placeholder="mot_de_passe">
+      </div>
+      <div class="form-row">
+        <label for="nom" class="labels">Nom</label>
+        <input [(ngModel)]="utili.nom" type="text" id="nom" name="nom" placeholder="nom">
+      </div>
+      <div class="form-row">
+        <label class="labels">Image</label>
+        <input type="file" (change)="selectedImage($event)" name="image" required>
+      </div>
+    </div>
+    <div class="form-column">
+      <div class="form-row">
+        <label for="role" class="labels">Role</label>
+        <select name="role" id="role" [(ngModel)]="utili.role" class="input">
+          <option value="membre">membre</option>
+          <option value="admin">admin</option>
+          <option value="chef">chef</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="prenom" class="labels">Prenom</label>
+        <input [(ngModel)]="utili.prenom" type="text" id="prenom" name="prenom" placeholder="prenom">
+      </div>
+      <div class="form-row">
+        <label for="email" class="labels">Email</label>
+        <input [(ngModel)]="utili.email" type="email" class="input" id="email" name="email" placeholder="email">
+      </div>
+      <div class="form-actions">
+       
 
 
-                    <div class="col-md-6"><label class="labelss">MDP</label>
-                      <input [(ngModel)]="utili.mot_de_passe"  type="password" class="inpuut" id="mot_de_passe" name="mot_de_passe" placeholder="mot_de_passe"></div>
-                  </div>
-                  <div class="row mt-2">
-                  <div class="col-md-6"><label class="labels">Nom</label>
-                    <input [(ngModel)]="utili.nom"  type="text"  id="nom" name="nom" placeholder="nom"></div>
-                  <div class="col-md-6"><label class="labelss">Role</label>
-                    <input [(ngModel)]="utili.role"  type="text" class="inpuut" id="role" name="role" placeholder="role"></div>
-                  </div>
-                  <div class="row mt-2">
-                  <div class="col-md-6"><label class="labels">Prenom</label>
-                    <input [(ngModel)]="utili.prenom"  type="text"  id="prenom" name="prenom" placeholder="prenom"></div>
-                  <div class="col-md-6"><label class="labelss">Email</label>
-                    <input [(ngModel)]="utili.email"  type="email" class="inpuut" id="email" name="email" placeholder="email"></div>
-                  </div>
-                 
-               <div class="col-md-12">
-              
-               <input type="file" (change)="selectedImage($event)"  class="asm"    name="image" required>
-             </div>
-              </div>   
+        <button type="submit" class="btn1">
+          <i class="fas fa-plus"></i> Ajouter
+        </button>
+
+
+        <a class="retour" [routerLink]="['/util']">Retour</a>
+      </div>
+    </div>
+  
+  </div>
+
+
+
  
-                
-                 <button class="btn1">Ajouter</button>
-                 
-                 <a class="retour" [routerLink]="['/util']">Retour</a>
-               </div>
-               
-                 
-              
-         </div>
-    
-        
- </div> 
+</form>

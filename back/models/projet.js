@@ -8,6 +8,10 @@ const complexiteEnum = {
   values: ['faible', 'moyenne', 'élevée'],
   message: 'La complexité doit être faible, moyenne ou élevée',
 };
+const typeEnum = {
+  values: ['web', 'mobile'],
+  message: 'le type doit etre web ou mobile',
+};
 
 const projetSchema = new mongoose.Schema({
   nom: {
@@ -48,6 +52,10 @@ const projetSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'userStory'
   }],
+  type:{
+    type:String,
+    enum: ['web', 'mobile']
+  }
 
 });
 

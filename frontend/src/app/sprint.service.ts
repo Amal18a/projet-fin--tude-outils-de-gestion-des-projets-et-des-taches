@@ -69,4 +69,8 @@ export class SprintService {
   gettachesparmois(memberId: string) {
     return this.http.get(`${this.url3}/taches-par-mois/${memberId}`);
   }
+
+  getnbretachetmembre(memberId: string) {
+    return this.http.get(`${this.url3}/nombre-taches/${memberId}`);
+  }
 }

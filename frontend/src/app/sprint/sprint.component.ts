@@ -130,8 +130,7 @@ viewSprintDetails(sprintId: string) {
   console.log(`Affichage des détails du sprint avec l'ID : ${sprintId}`);
 
   // Appelez la fonction get pour les tâches en utilisant le service des tâches
-  this.sprintservice.
-  getTaches(sprintId.toString()).subscribe(
+  this.sprintservice.getTaches(sprintId.toString()).subscribe(
     (taches) => {
       // Gérez les tâches récupérées
       console.log('Tâches récupérées :', taches);
@@ -193,13 +192,9 @@ edittaches(taches: any): void {
 cancelEdittache(taches: any): void {
   // Annuler les modifications et désactiver le mode d'édition de l'utilisateur
   taches.isEditing = false;
-  this.refreshtache();
-
-  
+  this.refreshtache(); 
 
 } 
-
-
 
 
 updatetaches(taches: any): void {
@@ -214,6 +209,4 @@ updatetaches(taches: any): void {
     }
   );
 }
-  
-
 }

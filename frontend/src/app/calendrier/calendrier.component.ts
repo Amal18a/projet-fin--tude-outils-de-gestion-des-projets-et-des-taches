@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Calendar } from '@fullcalendar/core';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
+import dayGridPlugin from '@fullcalendar/daygrid'; //visualiser les événements et les activités sur une vue mensuelle.
+import timeGridPlugin from '@fullcalendar/timegrid'; //visualiser les événements et les activités sur une plage horaire spécifique.
 import { AuthService } from '../services/auth.service';
 import { SprintService } from '../sprint.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
@@ -56,16 +56,7 @@ export class CalendrierComponent implements OnInit {
     eventCard.classList.add('event-card');
     eventCard.classList.add(eventInfo.event.extendedProps.className);
   
-    // Ajouter une couleur en fonction du statut de la tâche
-    if (eventInfo.event.extendedProps.statut === 'A faire') {
-      eventCard.style.backgroundColor = 'orange';
-    } else if (eventInfo.event.extendedProps.statut === 'en cours') {
-      eventCard.style.backgroundColor = 'blue';
-    } else if (eventInfo.event.extendedProps.statut === 'en retard') {
-      eventCard.style.backgroundColor = 'red';
-    } else if (eventInfo.event.extendedProps.statut === 'terminé') {
-      eventCard.style.backgroundColor = 'green';
-    }
+   
   
     eventCard.appendChild(eventTitle);
   

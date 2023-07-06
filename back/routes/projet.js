@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 // api pour ajouter un projet
 router.post('/teams', async (req, res) => {
   try {
-    const { nom, description, membres , date_debut , date_fin,complexite} = req.body;
+    const { nom, description, membres , date_debut , date_fin,complexite, type} = req.body;
 
     // Récupérer l'ID de l'utilisateur à partir du token JWT
     const token = req.headers.authorization.split(' ')[1];
@@ -20,7 +20,7 @@ router.post('/teams', async (req, res) => {
     const chefId = decodedToken.utilid;
 
     // Créer la nouvelle équipe avec le chef d'équipe
-    const projet = await Projet.create({ nom, description,date_debut, date_fin, complexite ,chef: chefId });
+    const projet = await Projet.create({ nom, description,date_debut, date_fin, complexite ,chef: chefId, type });
 
     // Ajouter les membres de l'équipe
     for (const membre of membres) {
@@ -228,51 +228,82 @@ res.status(200).json({ message: "Membre ajouté au projet avec succès" });
   });
 
 
-// api pour supprimer un membre de projet
-  router.delete('/membres/:id', async (req, res) => {
-    try {
-      const projet = await Projet.findById(req.params.id);
-      if (!projet) {
-        return res.status(404).json({ message: "Le projet n'existe pas" });
-      }
-  
-      const membre = await Util.findById(req.body.id);
-      if (!membre) {
-        return res.status(404).json({ message: "Le membhgdfb n'existe pas" });
-      }
-  
-      const membreIndex = projet.membres.indexOf(membre._id);
-      if (membreIndex === -1) {
-        return res.status(400).json({ message: "Le membre n'est pas présent dans le projet" });
-      }
-  
-      projet.membres.splice(membreIndex, 1);
-      await projet.save();
-  
-      res.status(200).json({ message: "Membre supprimé du projet avec succès" });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Une erreur est survenue lors de la suppression du membre du projet" });
+
+// API pour supprimer un membre de projet
+router.delete('/membres/:id', async (req, res) => {
+  try {
+    // Recherche du projet correspondant à l'identifiant
+    const projet = await Projet.findById(req.params.id);
+    if (!projet) {
+      // Si le projet n'est pas trouvé, renvoyer une réponse avec le statut 404 et un message d'erreur
+      return res.status(404).json({ message: "Le projet n'existe pas" });
     }
-  });
+
+    // Recherche du membre à supprimer
+    const membre = await Util.findById(req.body.id);
+    if (!membre) {
+      // Si le membre n'est pas trouvé, renvoyer une réponse avec le statut 404 et un message d'erreur
+      return res.status(404).json({ message: "Le membre n'existe pas" });
+    }
+
+    // Vérification si le membre est présent dans la liste des membres du projet
+    const membreIndex = projet.membres.indexOf(membre._id);
+    if (membreIndex === -1) {
+      // Si le membre n'est pas présent dans le projet, renvoyer une réponse avec le statut 400 et un message d'erreur
+      return res.status(400).json({ message: "Le membre n'est pas présent dans le projet" });
+    }
+
+    // Suppression du membre de la liste des membres du projet
+    projet.membres.splice(membreIndex, 1);
+    await projet.save();
+
+    // Renvoyer une réponse avec le statut 200 et un message de succès
+    res.status(200).json({ message: "Membre supprimé du projet avec succès" });
+  } catch (error) {
+    console.error(error);
+    // En cas d'erreur, renvoyer une réponse avec le statut 500 et un message d'erreur
+    res.status(500).json({ message: "Une erreur est survenue lors de la suppression du membre du projet" });
+  }
+});
+
 
 
 // recupirer les projets d'un membre specifique 
-router.get('/all2/:id', (req, res) => {
-  const userId = req.params.id; // Récupérer l'ID de l'utilisateur spécifique depuis l'URL
+// router.get('/all2/:id', (req, res) => {
+//   const userId = req.params.id; // Récupérer l'ID de l'utilisateur spécifique depuis l'URL
 
-  Projet.find({ membres: userId }) // Filtrer les projets en fonction de l'ID de l'utilisateur
-    .populate('chef', 'nom prenom')
-    .exec((err, projets) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send(err);
-      } else {
-        res.status(200).send(projets);
-      }
-    });
+//   Projet.find({ membres: userId }) // Filtrer les projets en fonction de l'ID de l'utilisateur
+//     .populate('chef', 'nom prenom')
+//     .exec((err, projets) => {
+//       if (err) {
+//         console.error(err);
+//         res.status(500).send(err);
+//       } else {
+//         res.status(200).send(projets);
+//       }
+//     });
+// });
+
+
+router.get('/all2/:id', async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    const projets = await Projet.find({ membres: userId })
+      .populate('chef', 'nom prenom')
+      .exec();
+
+    const projetsAvecStatut = await Promise.all(projets.map(async (projet) => {
+      const statut = await projet.statut;
+      return { ...projet._doc, statut };
+    }));
+
+    res.status(200).json(projetsAvecStatut);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Une erreur s\'est produite lors de la récupération des projets.' });
+  }
 });
-
 
 // afficher fiche de projet specifique y'a compris son statut
   router.get('/projets/:id', async (req, res) => {
@@ -304,7 +335,7 @@ router.get('/all2/:id', (req, res) => {
 
 
 
-
+// afficher tous les projets d'un chef spécifique
 
 router.get('/all3/:id', async (req, res) => {
   const chefId = req.params.id;
@@ -371,27 +402,27 @@ router.get('/projetsretard/:chefId', async (req, res) => {
 });
 
 
+// Rechercher un projet par nom
+router.get('/rechercher/:nom', async (req, res) => {
+  const nom = req.params.nom;
+  try {
+    const projet = await Projet.findOne({ nom: nom })
+      .populate('chef', 'nom prenom')
+      .exec();
 
-// // rechercher un projet par nom
-// router.get('/get/:nom' , (req, res)=>{
-//   let nom=req.params.nom;
-
-//   Projet.findOne({nom: nom})
-//   .populate('chef', ' image nom prenom ')
-//   .populate('membres', 'nom prenom   ')
-  
-//       .then(
-//           (projet)=>{
-//               res.status(200).send(projet);
-//           }
-//       )
-//       .catch(
-//           (err)=>{
-//               res.status(400).send(err)
-//           }
-//       )
+    if (projet) {
+      const statut = await projet.statut;
+      const projetAvecStatut = { ...projet._doc, statut };
+      res.status(200).json(projetAvecStatut);
+    } else {
+      res.status(404).json({ message: 'Projet introuvable.' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Une erreur s\'est produite lors de la récupération du projet.' });
+  }
+});
 
 
-// })
   module.exports = router;
   

@@ -1,7 +1,8 @@
 <p class="welcome">Bienvenue, {{ this.prenom }}</p>
 <div class="tous">
 <div class="container">
-  <div *ngIf="isAdmin" class="chart-section">
+  <!-- bi d'admin -->
+  <div *ngIf="isAdmin" >
     <div class="card-group">
       <div class="card">
         <div class="count">{{ nombreProjets }}</div>
@@ -15,22 +16,48 @@
         <div class="count">{{ nombreUtils }}</div>
         <div class="label">Nombre d'utilisateurs</div>
       </div>
-
-     
-
     </div>
-    <div class="chart-wrapper">
+<div class="chart-section">
+  <div class="chart-wrapper">
+    <h3>Nombre d'utilisateurs par rôle</h3>
+    <ngx-charts-pie-chart
+      class="chart"
+      [view]="view"
+      [results]="chartData"
+      [legend]="showLegend"
+      [explodeSlices]="explodeSlices"
+      [labels]="showLabels"
+      [doughnut]="isDoughnut"
+    ></ngx-charts-pie-chart>
+  </div>
+  <div class="chart-wrapper">
+    <h3>Nombres des projet par chef</h3>
+    <ngx-charts-bar-vertical
+      [view]="[400, 300]"
+      [results]="chartData7"
+      [xAxis]="true"
+      [yAxis]="true"
+      [legend]="true"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      xAxisLabel="chef"
+      yAxisLabel="Nombre des projets"
+    ></ngx-charts-bar-vertical>
+  </div>
+    <div class="chart-wrapper1">
       <h3>Meilleur membre</h3>
       <img width="250px" height="250px" [src]="'http://127.0.0.1:3000/getimage/'+ maxmembre?.image" />
       <p> {{ maxmembre?.membre }}</p>
       <p>Nombre des tâches : {{ maxmembre?.nombreMaxTaches }}</p>
     </div>
+
+
     <div class="chart-wrapper">
-      <h3>Nombre d'utilisateurs par rôle</h3>
+      <h3>Nombre taches par statut</h3>
       <ngx-charts-pie-chart
         class="chart"
         [view]="view"
-        [results]="chartData"
+        [results]="chartData8"
         [legend]="showLegend"
         [explodeSlices]="explodeSlices"
         [labels]="showLabels"
@@ -61,27 +88,29 @@
         [legend]="showLegend"
         [showXAxisLabel]="showXAxisLabel"
         [showYAxisLabel]="showYAxisLabel"
-        [xAxisLabel]="xAxisLabel"
-        [yAxisLabel]="yAxisLabel"
+        xAxisLabel="mois"
+        yAxisLabel="nombre des projets"
       ></ngx-charts-line-chart>
     </div>
-    <div class="chart-wrapper">
-      <p>Nombres de tâches par membre</p>
-      <ngx-charts-bar-vertical
-        [view]="[400, 300]"
-        [results]="chartData7"
-        [xAxis]="true"
-        [yAxis]="true"
-        [legend]="true"
-        [showXAxisLabel]="true"
-        [showYAxisLabel]="true"
-        xAxisLabel="Membre"
-        yAxisLabel="Nombre de tâches"
-      ></ngx-charts-bar-vertical>
-    </div>
+
+   
+
+  </div>
   </div>
 
-  <div *ngIf="isMembre" class="chart-section">
+  <!-- bi de membre -->
+  <div *ngIf="isMembre">
+    <div class="card-group">
+    <div class="card">
+      <div class="count">{{ nombreProjetsMembre }}</div>
+      <div class="label">Nombre de projets</div>
+    </div>
+    <div class="card">
+      <div class="count">{{ nombretachesMembre }}</div>
+      <div class="label">Nombre des taches</div>
+    </div>
+    </div>
+<div  class="chart-section">
     <div class="chart-wrapper">
       <h3>Tâches par statut</h3>
       <ngx-charts-pie-chart
@@ -94,10 +123,7 @@
         [doughnut]="isDoughnut"
       ></ngx-charts-pie-chart>
     </div>
-    <div class="card">
-      <div class="count">{{ nombreProjetsMembre }}</div>
-      <div class="label">Nombre de projets</div>
-    </div>
+
     <div class="chart-wrapper">
       <h3>Tâches par mois</h3>
       <ngx-charts-line-chart
@@ -109,13 +135,48 @@
         [legend]="showLegend"
         [showXAxisLabel]="showXAxisLabel"
         [showYAxisLabel]="showYAxisLabel"
-        [xAxisLabel]="xAxisLabel"
-        [yAxisLabel]="yAxisLabel"
+        xAxisLabel="Mois"
+        yAxisLabel="Nombre des taches"
       ></ngx-charts-line-chart>
     </div>
   </div>
+</div>
 
-  <div *ngIf="isChef" class="chart-section">
+
+  <!-- bi de chef -->
+  <div *ngIf="isChef" >
+    <div class="card-group">
+     
+        <div class="card">
+          <div class="count">{{ nombreProjetsChef }}</div>
+          <div class="label">Nombre de projets</div>
+        </div>
+   </div>
+   <div class="chart-section">
+        <div class="card">
+        <h3> Mes projets retard</h3>
+      
+        <div class="ey" *ngFor="let projet of projets">{{ projet.nom }}
+        </div>
+        <button routerLink="/projetretard" class="button-style">Mes projets retard</button>
+      </div>
+      <div class="chart-wrapper">
+        <h3>progression des projets</h3>
+          <div *ngFor="let item of progression">
+            <h5>{{ item.projet }}</h5>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" [style.width.%]="item.pourcentageTermine">
+                {{ item.pourcentageTermine }}%
+              </div>
+            </div>
+          </div>
+        
+        
+        </div>
+    
+   
+   
+
     <div class="chart-wrapper">
       <h3>Nombre de projets par statut</h3>
       <ngx-charts-pie-chart
@@ -128,10 +189,7 @@
         [doughnut]="isDoughnut"
       ></ngx-charts-pie-chart>
     </div>
-    <div class="card">
-      <div class="count">{{ nombreProjetsChef }}</div>
-      <div class="label">Nombre de projets</div>
-    </div>
+
     <div class="chart-wrapper">
       <h3>Projets par mois</h3>
       <ngx-charts-line-chart
@@ -143,10 +201,13 @@
         [legend]="showLegend"
         [showXAxisLabel]="showXAxisLabel"
         [showYAxisLabel]="showYAxisLabel"
-        [xAxisLabel]="xAxisLabel"
-        [yAxisLabel]="yAxisLabel"
+        xAxisLabel="Mois"
+        yAxisLabel="Nombre de projets"
       ></ngx-charts-line-chart>
     </div>
+  
+   
   </div>
+</div>
 </div>
 </div>

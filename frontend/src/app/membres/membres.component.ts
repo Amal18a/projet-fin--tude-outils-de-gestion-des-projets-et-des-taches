@@ -66,7 +66,7 @@ ajouterMembreAuProjet() {
     return;
   }
 
-  const membres = [this.membreSelectionne]; // Modifier ici selon la structure de votre objet membre
+  const membres = [this.membreSelectionne]; 
 
   const requestBody = { membres };
   console.log(requestBody)
@@ -99,10 +99,7 @@ supprimerMembre( membreId: string): void {
         // Ajoutez ici le code de gestion des erreurs ou l'affichage d'un message d'erreur à l'utilisateur
       }
     );
-}
-
-
-
+} 
 }
 
 

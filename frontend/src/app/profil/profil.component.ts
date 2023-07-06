@@ -13,6 +13,7 @@ util:any;
   constructor(private act:ActivatedRoute ,private router:Router,  private _auth:AuthService) { }
 
   ngOnInit(): void {
+    // a valeur du paramètre "utilid" de l'URL
     this.utilid=this.act.snapshot.paramMap.get('utilid');
     this._auth.getbyId(this.utilid)
     .subscribe(

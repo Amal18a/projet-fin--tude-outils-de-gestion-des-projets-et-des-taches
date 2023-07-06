@@ -53,7 +53,7 @@ viewSprintDetails(sprintId: string) {
 
   // Appelez la fonction get pour les tâches en utilisant le service des tâches
   this.sprintservice.
-  getTaches(sprintId.toString()).subscribe(
+getTaches(sprintId.toString()).subscribe(
     (taches) => {
       // Gérez les tâches récupérées
       console.log('Tâches récupérées :', taches);

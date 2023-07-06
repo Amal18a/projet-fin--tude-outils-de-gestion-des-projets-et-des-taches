@@ -1,12 +1,19 @@
 <section class="eyy">
-    <div  class="no">
-    
+    <div class="no">
+        <i class="fa fa-tasks"></i>
         <a>{{projet.nom}}</a>
         <td>
             <mat-chip class="ey" [ngClass]="getStatusClass(projet.statut)">{{projet.statut}}</mat-chip>
-  
-          </td>
-</div>
+        </td>
+        <p>Progression de projet</p>
+        <div class="progress">
+            
+            <div class="progress-bar" role="progressbar" [style.width.%]="pourcentageTermines">
+              {{ pourcentageTermines }}%
+            </div>
+          </div>
+    </div>
+    
     <mat-tab-group>
         <mat-tab label="Aperçu">
             <app-apercuu></app-apercuu>

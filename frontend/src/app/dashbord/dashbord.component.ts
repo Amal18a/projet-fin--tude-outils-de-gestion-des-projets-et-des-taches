@@ -4,9 +4,6 @@ import { AuthService } from '../services/auth.service';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { ProjetserviceService } from '../projetservice.service';
 import { SprintService } from '../sprint.service';
-
-
-
 import { ColorHelper, id } from '@swimlane/ngx-charts';
 
 @Component({
@@ -27,13 +24,13 @@ export class DashbordComponent implements OnInit {
   chartData5: any[] = [];
   chartData6: any[] = [];
   chartData7:any[] = [];
-
+  chartData8:any[]=[];
+  progression:any;
   nombreProjetsMembre: number | undefined;
+  nombretachesMembre: number | undefined;
   maxmembre:any;
   nombreProjetsChef: number | undefined;
   prenom: string='';
-
-
   explodeSlices = false;
   showLegend = true;
   showLabels = true;
@@ -45,13 +42,13 @@ export class DashbordComponent implements OnInit {
   chartOptions: any;
   colorSchema: { domain: string[] } | undefined;
   single: any[] = [];
-  xAxisLabel = 'Mois';
-  yAxisLabel = 'Nombre de tâches';
+  // xAxisLabel = 'Mois';
+  // yAxisLabel = 'Nombre de tâches';
   showXAxisLabel = true;
   showYAxisLabel = true;
   showXAxis = true; // Ajoutez cette ligne pour déclarer la propriété showXAxis
   showYAxis = true;
-
+  projets:any;
   constructor(
     private http: HttpClient,
     public _auth: AuthService,
@@ -61,11 +58,9 @@ export class DashbordComponent implements OnInit {
 
   ) {}
 
-  ngOnInit() {
-
-
-
-
+  ngOnInit() { 
+     
+  // utilisateur par role
     this.http.get<any>('http://localhost:3000/biAdmin/calculer-utilisateurs').subscribe((data: any) => {
       this.chartData = [
         { name: 'Membres', value: data.utilisateursMembre },
@@ -73,9 +68,17 @@ export class DashbordComponent implements OnInit {
         { name: 'Admins', value: data.utilisateursAdmin }
       ];
     });
+// taches par statut
+    this.http.get<any>('http://localhost:3000/biAdmin/calculer-taches').subscribe((data: any) => {
+      this.chartData8 = [
+        { name: 'Afaire', value: data.tachesAFaire },
+        { name: 'EnCours', value: data.tachesEnCours },
+        { name: 'Termines', value: data.tachesTermines },
+        { name: 'EnRetard', value: data.tachesEnRetard }
+      ];
+    });
 
-
-
+// projet par complexite
     this.http.get<any>('http://localhost:3000/biAdmin/nombre-projets-par-complexite').subscribe((data: any) => {
       this.chartData1 = [
         { name: 'moyenne', value: data.moyenne },
@@ -84,8 +87,10 @@ export class DashbordComponent implements OnInit {
       ];
     });
 
-    const role = this._auth.getRole();
 
+
+// role de token
+    const role = this._auth.getRole();
     if (role === 'admin') {
       this.isAdmin = true;
     } else if (role === 'chef') {
@@ -93,12 +98,13 @@ export class DashbordComponent implements OnInit {
     } else if (role === 'membre') {
       this.isMembre = true;
     }
-
+// role et id de token
     const userinfo=this._auth.getRoleAndId();
     if (userinfo) {
 
       this.prenom=userinfo.prenom;
       const _id = userinfo.utilid;
+  // tache d'un membre spécifique selon statut
       this.sprintservice.gettachemembresatatut(_id).subscribe((data:any)=>{
         console.log('tachesss',data)
         this.chartData2= [
@@ -108,16 +114,22 @@ export class DashbordComponent implements OnInit {
           { name: 'En retard', value: data.tachesEnRetard }
         ];
       });
-
+// nbre de projet q'un membre spécifique appartient
       this.sprintservice.getnbreprojetmembre(_id).subscribe((data:any)=>{
         this.nombreProjetsMembre=data.nombreProjets
 
       });
+      this.sprintservice.getnbretachetmembre(_id).subscribe((data:any)=>{
+        this.nombretachesMembre=data.nombreTaches
+
+      });
+      
+// taches par mois d'un membre specifique
       this.sprintservice.gettachesparmois(_id).subscribe((data: any) => {
         this.chartData3 = [
           {
             name: 'Tâches par mois',
-            series: data.map((entry: { mois: any; count: any; }) => {
+            series: data.map((entry: { mois: number; count: any; }) => {
               return {
                 name: entry.mois,
                 value: entry.count
@@ -126,11 +138,9 @@ export class DashbordComponent implements OnInit {
           }
         ];
       });
-
-
       
 //bi chef
-      //projets par statut
+    //projets par statut
       this.projetservice.getProjeStatut(_id).subscribe((data)=>{
         console.log('hett',data)
         this.chartData4= [
@@ -140,7 +150,7 @@ export class DashbordComponent implements OnInit {
           { name: 'En retard', value: data.EnRetard }
         ];
       })
-      //nombre totale des projets
+     //nombre totale des projets
       this.projetservice.getnombreProjetChef(_id).subscribe((data)=>{
         this.nombreProjetsChef=data.count
         
@@ -154,7 +164,15 @@ export class DashbordComponent implements OnInit {
       
         return nomsMois[numeroMois - 1];
       }
-      
+
+// projet retard d'un chef specifique
+      this.projetservice.getProjetsRetard(_id).subscribe((data:any)=>{
+        this.projets=data
+        console.log('projets',this.projets)
+
+      })
+  
+  // projet par mois d'un chef specifique  
       this.projetservice.getnombreProjetParMois(_id).subscribe((data) => {
         this.chartData5 = [
           {
@@ -168,11 +186,21 @@ export class DashbordComponent implements OnInit {
           },
         ];
       });
+// niveau de progression des projet d'un chef
+      this.projetservice.getProgression(_id).subscribe((data)=>{
+        this.progression=data
+
+        console.log('dataaaa',this.progression)
+      })
+  
+// meilleur membre
       this.projetservice.getMembresMax().subscribe((data)=>{
         this.maxmembre=data;
         console.log('htis',this.maxmembre)
 
       })
+
+// projet total par mois
       this.projetservice.getprojetsparmois().subscribe((data)=>{
         this.chartData6=[
           {
@@ -189,19 +217,8 @@ export class DashbordComponent implements OnInit {
 
 
       })
-      
 
-
-      
-      
-
-    
-
-
-
-
-
-
+// nbre de projet total
     this.projetservice.getNombreProjets().subscribe(
       data => {
         this.nombreProjets = data.nombreProjets;
@@ -210,7 +227,7 @@ export class DashbordComponent implements OnInit {
         console.error('Une erreur s\'est produite lors de la récupération du nombre de projets :', error);
       }
     );
-
+// nbre des utilisateurs total
     this.projetservice.getNombreUtils().subscribe(
       data => {
         this.nombreUtils = data.nombreUtils;
@@ -219,6 +236,7 @@ export class DashbordComponent implements OnInit {
         console.error('Une erreur s\'est produite lors de la récupération du nombre de utilisateurs :', error);
       }
     );
+  // nbre des projet en 30j
     this.projetservice.getnbreproj30j().subscribe(
       data => {
         this.nombreProjets1 = data.nombreProjets1;
@@ -227,6 +245,7 @@ export class DashbordComponent implements OnInit {
         console.error('Une erreur s\'est produite lors de la récupération du nombre de projets :', error);
       }
     );
+// nbre de projet par chef
     this.projetservice.getnbreprojetparchef().subscribe((data)=>{
       this.chartData7 = data.map((item: { chef: any;nombreProjets: any; }) => ({
         name:item.chef,
@@ -234,20 +253,18 @@ export class DashbordComponent implements OnInit {
       }));
 
     })
-
-
+ 
 }
-  
 }
-
-
-
-
-
 
 }
 
 
 
+
+
+
+
+ 
 
   

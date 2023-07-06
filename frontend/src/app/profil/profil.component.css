@@ -1,3 +1,4 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
 body {
     background: rgb(255, 255, 255)
 }
@@ -14,12 +15,27 @@ body {
 input{
     width: 250px;
 }
-h4{
+/* h4{
       font-family: 'Pacifico', cursive;
   color: #371c9c;
   margin-left: 12%;
  
-}
+} */
+
+h2 {
+    display: flex;
+    align-items: center;
+    color: #333;
+    font-size: 24px;
+    
+
+  }
+  
+   h2 i {
+    margin-right: 10px;
+    font-size: 24px;
+    margin-left: 5%;
+  }
 
 hr{
     background-color: black;

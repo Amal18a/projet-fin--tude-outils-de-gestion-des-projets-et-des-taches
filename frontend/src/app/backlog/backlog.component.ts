@@ -42,15 +42,18 @@ export class BacklogComponent {
   toggleAddForm() {
     this.showAddForm = !this.showAddForm;
   }
-
+  cancelAddtUserStory(): void {
+    // Annuler les modifications et désactiver le mode d'ajout de l'utilisateur
+    this.showAddForm = false;
+    this.refreshUserStory();
+  
+  } 
   addUserStory(): void {
     this.backlogservice.addUserStory(this.projectId, this.userStory).subscribe(
       (response) => {
         console.log(response);
         this.userStory = {}; // Réinitialiser les valeurs des champs de formulaire
-
         this.userstory.push(response); // Ajouter la nouvelle User Story à la liste
-
         this.showAddForm = false; // Masquer le formulaire d'ajout après l'ajout réussi
       },
       (error) => {
@@ -82,12 +85,9 @@ editUserStory(userstory: any): void {
 cancelEditUserStory(userstory: any): void {
   // Annuler les modifications et désactiver le mode d'édition de l'utilisateur
   userstory.isEditing = false;
+  this.refreshUserStory();
 
-  userstory.user_story = userstory.original_user_story;
-  userstory.estimation = userstory.original_estimation;
-  userstory.priorite = userstory.original_priorite;
-}
-
+} 
 updateUserStory(userstory: any): void {
   this.backlogservice.updateUserStory(userstory._id, userstory).subscribe(
     (response) => {

@@ -17,10 +17,10 @@ export class ProjetserviceService {
 
   
 
-  addProjet(nom: string, description: string, membres: string[], date_debut: Date, date_fin : Date , complexite:string): Observable<any> {
+  addProjet(nom: string, description: string, membres: string[], date_debut: Date, date_fin : Date , complexite:string, type:string): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    const body = { nom, description, membres, date_debut, date_fin,complexite };
+    const body = { nom, description, membres, date_debut, date_fin,complexite , type};
     return this.http.post<any>(this.apiUrl, body, { headers });
   }
   getAll(): Observable<any> {
@@ -39,7 +39,7 @@ export class ProjetserviceService {
   }
 
   getProjetByNom(nom: string): Observable<any> {
-    const url = `${this.url}/get/${nom}`;
+    const url = `${this.url}rechercher/${nom}`;
     return this.http.get<any>(url);
   }
   getByid(_id: string): Observable<any> {
@@ -82,30 +82,28 @@ getProjetsByChefId(id: string): Observable<any> {
 }
 
 
-
-
-
-
-
-
-
-
-getProjetsBymembreId(id: string): Observable<any[]> {
+getProjetsBymembreId(id: string): Observable<any> {
   return this.http.get(`${this.url}all2/${id}`)
-    .pipe(map((res: any) => {
-      const projets = res.map((projet: any) => {
-        if (new Date(projet.date_debut) <= new Date() && new Date(projet.date_fin) > new Date()) {
-          projet.statut = 'En cours';
-        } else if (new Date(projet.date_fin) <= new Date()) {
-          projet.statut = 'Terminé';
-        } else {
-          projet.statut = 'à venir';
-        }
-        return projet;
-      });
-      return projets;
-    }));
 }
+
+
+
+// getProjetsBymembreId(id: string): Observable<any[]> {
+//   return this.http.get(`${this.url}all2/${id}`)
+//     .pipe(map((res: any) => {
+//       const projets = res.map((projet: any) => {
+//         if (new Date(projet.date_debut) <= new Date() && new Date(projet.date_fin) > new Date()) {
+//           projet.statut = 'En cours';
+//         } else if (new Date(projet.date_fin) <= new Date()) {
+//           projet.statut = 'Terminé';
+//         } else {
+//           projet.statut = 'à venir';
+//         }
+//         return projet;
+//       });
+//       return projets;
+//     }));
+// }
 
 
 
@@ -187,7 +185,9 @@ getnombreProjetChef(id:string): Observable<any> {
 getnombreProjetParMois(id:string): Observable<any> {
   return this.http.get(`${this.url5}projets-nombre-par-mois/${id}`)
 }
-
+getProgression(id:string): Observable<any> {
+  return this.http.get(`${this.url5}pourcentage-termine/${id}`)
+}
 }
 
 

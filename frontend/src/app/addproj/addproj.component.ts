@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProjetserviceService } from '../projetservice.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class AddprojComponent {
   date_fin: Date = new Date();
   selectedMembres: string[]=[];
   complexite: string='';
-  constructor(private projetservice:ProjetserviceService  ) {}
+  type:string='';
+  constructor(private projetservice:ProjetserviceService, private router: Router ) {}
 
 
 
@@ -32,19 +34,14 @@ export class AddprojComponent {
   }
 
 
- 
-
-
-
-
-
 onSubmit() {
   const membresSelectionnes = this.membres.filter(membre => membre.selected).map(membre => membre._id);
-  this.projetservice.addProjet(this.nom, this.description, membresSelectionnes, this.date_debut, this.date_fin, this.complexite)
+  this.projetservice.addProjet(this.nom, this.description, membresSelectionnes, this.date_debut, this.date_fin, this.complexite, this.type,)
     .subscribe(
       (projet) => {
         console.log('Projet ajouté avec succès', projet);
         alert('Projet ajouté avec succès');
+        this.router.navigate(['/projet']);
         // rediriger l'utilisateur vers la page du projet
       },
       (error) => {

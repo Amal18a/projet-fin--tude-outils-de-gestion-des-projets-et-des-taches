@@ -9,6 +9,7 @@ const router=express.Router();
 const crypto = require('crypto');
 
 
+
 // importation des models
  const Util =require('../models/util');
  const projet =require('../models/projet');
@@ -138,7 +139,7 @@ router.post('/addd', upload.any('image'), async function(req, res) {
   });
   
   // afficher tous les utilisateurs
-router.get('/all' , async function(req, res) {
+router.get('/all' ,async function(req, res) {
     Util.find({})
         .then(
             (util)=>{
@@ -150,9 +151,8 @@ router.get('/all' , async function(req, res) {
                 res.status(400).send(err)
             }
         )
-
-
 })
+
 // get utilisateurs de role membre
 router.get('/membres', async function(req, res) {
   Util.find({ role: "membre" }) // Ajouter une condition pour filtrer les utilisateurs ayant un rôle de "membre"
@@ -183,8 +183,6 @@ router.get('/getbycin/:cin' , (req, res)=>{
                 res.status(400).send(err)
             }
         )
-
-
 })
 
 // recherche par nom d'utilisateur
@@ -224,8 +222,6 @@ router.get('/getbyid/:id' , async function(req, res) {
                 res.status(400).send(err)
             }
         )
-
-
 })
 
 
@@ -244,9 +240,10 @@ router.delete('/deletebycin/:cin' , async function(req, res) {
                 res.status(400).send(err)
             }
         )
-
-
 })
+
+
+
 
 // modifier un util par cin
 router.put('/updatebycin/:cin' , async function(req, res) {
@@ -271,12 +268,6 @@ router.put('/updatebycin/:cin' , async function(req, res) {
 router.put('/updatebyid/:id' , upload.any('image'), async function(req, res) {
   let id = req.params.id
   let data = req.body;
-
-  if (data.mot_de_passe) {
-    const salt = bcrypt.genSaltSync(10);
-    data.mot_de_passe = bcrypt.hashSync(data.mot_de_passe, salt);
-  }
-
   if(filename.length >0){
       data.image = filename;
   }

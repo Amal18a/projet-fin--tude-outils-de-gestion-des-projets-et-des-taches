@@ -4,11 +4,11 @@
   height: auto;
   background-color: rgb(238, 243, 243);
 }
-.container {
+/* .container {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
-}
+} */
 
 .chart-section {
   display: grid;
@@ -22,7 +22,7 @@
   margin-bottom: 20px;
 }
 
-.chart-wrapper {
+.chart-wrapper, .chart-wrapper1 {
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -33,7 +33,9 @@
 .chart-wrapper:hover {
   transform: translateY(-5px);
 }
-
+.chart-wrapper1 {
+padding-left: 25%;
+}
 .card {
   background-color: #ffffff;
   border-radius: 10px;
@@ -41,6 +43,7 @@
   padding: 20px;
   flex: 1;
   margin-right: 10px;
+  /* width: 180px; */
   transition: transform 0.3s ease;
 }
 
@@ -77,3 +80,54 @@ p.welcome {
   color: #333333;
   font-family: 'Open Sans', sans-serif;
 }
+.ey{
+  display: inline-block;
+  width: 150px;
+  padding: 10px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: rgb(221, 41, 41) ;
+  margin-top: 5%;
+  color: #ffffff;
+  }
+  .button-style{
+      padding: 10px 5px;
+      background-color: #2196f3;
+      color: #ffffff;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 25%;
+    
+    }
+    
+    .button-style:hover {
+      background-color: #0056b3;
+    }
+    .progress {
+      height: 20px;
+      background-color: #f1e8e8;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      border-color: #333333;
+    }
+    
+    .progress-bar {
+      background-color: green;
+      color: #fff;
+      text-align: center;
+      line-height: 20px;
+      border-radius: 10px;
+      transition: width 0.3s ease-in-out;
+      border-color: #333333;
+    }
+    
+    .progress-bar:hover {
+      cursor: pointer;
+      background-color: #0a3e13;
+      border-color: #333333;
+    }

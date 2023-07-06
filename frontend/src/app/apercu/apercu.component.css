@@ -1,10 +1,13 @@
+/* Custom CSS */
+
 .container {
-  max-width: 100%;
-  margin: 0 auto;
+  margin-top: 25px;
+ 
+
 }
 
 .card {
-  border-radius: 8px;
+  border: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -12,45 +15,61 @@
   padding: 20px;
 }
 
-.list-group-item {
-  border: none;
-  padding: 15px;
+.custom-list-group {
+  list-style: none;
+  padding: 0;
 }
 
-.labels {
+.custom-list-item {
+  margin-bottom: 20px;
+}
+
+.custom-label {
   font-weight: bold;
-  color: #333;
 }
 
-.value {
-  color: #666;
+.custom-value {
+  font-size: 16px;
+  margin-top: 5px;
 }
 
-.row.align-items-center {
-  margin-top: 10px;
+.custom-row {
+  display: flex;
+  align-items: center;
 }
 
-.col-auto {
+.custom-col-auto {
   margin-right: 10px;
 }
 
-.rounded-circle {
+.custom-rounded-circle {
   border-radius: 50%;
 }
 
-.action-button {
-  padding: 10px 20px;
+.custom-form-control {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.custom-action-button {
   background-color: #007bff;
   color: #fff;
   border: none;
+  padding: 8px 16px;
   border-radius: 4px;
+  font-size: 14px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.action-button i {
+.custom-action-button:hover {
+  background-color: #0056b3;
+}
+
+/* Font Awesome Icons */
+
+.fa {
   margin-right: 5px;
-}
-
-.action-button:hover {
-  background-color: #0069d9;
 }

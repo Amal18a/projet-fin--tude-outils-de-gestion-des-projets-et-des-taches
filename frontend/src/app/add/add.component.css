@@ -1,109 +1,19 @@
 @import "~@fortawesome/fontawesome-free/css/all.css";
 body {
-  background: rgb(99, 39, 120)
-}
-
-input{
-  width: 250px;
-  margin-top: 15%;
-}
-
-
-
-hr{
-  background-color: black;
-  width: 390px;
-  border: 3px solid;
-   
-}
-h3{
-  margin-left: 5%;
-  font-family: 'Pacifico', cursive;
-  color: #000000;
-  
-
-}
-.ama{
-  margin-left: 15%;
-  
-  margin-bottom: 7%;
-}
-.form-control:focus {
-  box-shadow: none;
-  border-color: #BA68C8
-}
-
-.profile-button {
   background: rgb(99, 39, 120);
-  box-shadow: none;
-  border: none
+  font-family: Arial, sans-serif;
 }
 
-img{
-  margin-left: 35%;
-  margin-bottom: 12%;
-}
-span{
-  margin-left: 35%;
-}
-.profile-button:hover {
-  background: #682773
-}
-
-.profile-button:focus {
-  background: #682773;
-  box-shadow: none
-}
-
-.profile-button:active {
-  background: #682773;
-  box-shadow: none
-}
-
-.back:hover {
-  color: #682773;
-  cursor: pointer
-}
-
-.labels {
-  font-size: 17px;
-  text-transform: uppercase;
-  font-family: 'Pacifico', cursive;
-  margin-top: 15%;
-}
-.label{
-  font-size: 15px;
-}
-.labelss{
-  margin-left: 100%;
-  margin-top: 15%;
-  font-size: 17px;
-  text-transform: uppercase;
-  font-family: 'Pacifico', cursive;
-}
-.inpuut{
-  margin-left: 100%;
-  margin-top: 15%;
-}
-
-.add-experience:hover {
-  background: #BA68C8;
-  color: #fff;
-  cursor: pointer;
-  border: solid 1px #BA68C8
-}
-
- .retour{
+h2 {
+  display: flex;
+  align-items: center;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
   
-  margin-left: 164%;
- }
 
- .asm{
-  margin-left: 20%;
-  margin-top: 15%;
- }
- 
- .btn1 {
+}
+.btn1 {
   padding: 10px 15px;
   background-color: #2196f3;
   color: #ffffff;
@@ -112,20 +22,108 @@ span{
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-  height: 40px;  
-  width: 140px;
- 
-  margin-left: 152%;
 }
 
-.btn1 {
+.btn1:hover {
   background-color: #0056b3;
 }
 
+ h2 i {
+  margin-right: 10px;
+  font-size: 24px;
+  margin-left: 5%;
+}
 
+.form-container {
+  margin: 5% auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
 
+.form-column {
+  flex-basis: 45%;
+}
 
+.form-row {
+  margin-bottom: 30px;
+}
 
+.labels {
+  font-size: 16px;
+  color: #2196f3;
+ 
+}
 
+input[type="text"],[type="password"],[type="email"],[type="file"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
 
+ul {
+  list-style-type: none;
+  padding: 0;
+  max-height: 100px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+}
 
+li {
+  margin-bottom: 5px;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 35px;
+  border: none;
+  background-color: blue;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 70%;
+}
+
+button:hover {
+  background-color: rgb(153, 153, 184);
+}
+
+.retour {
+  margin-left: 10px;
+  color: #682773;
+  text-decoration: none;
+  font-size: 16px;
+  margin-left: 77%;
+}
+
+.retour:hover {
+  color: #8e5ed8;
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-column {
+    flex-basis: 100%;
+  }
+
+  button {
+    margin-left: 100px;
+  }
+
+  
+}

@@ -11,8 +11,6 @@ import { BacklogService } from '../backlog.service';
 export class BackloggComponent {
   userstory: any;
   projectId: string = '';
-  showAddForm: boolean = false;
-  userStory: any = {};
   pageSize = 7; // nombre d'éléments à afficher par page
   p = 1; // page actuelle
   constructor(private route: ActivatedRoute, private backlogservice: BacklogService) { }

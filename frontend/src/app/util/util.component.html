@@ -14,9 +14,9 @@
     <thead>
       <tr>
         <th>Photo</th>
-        <th>CIN</th>
         <th>Nom</th>
         <th>Prénom</th>
+        <th>role</th>
         <th>Email</th>
         <th>Actions</th>
       </tr>
@@ -27,9 +27,10 @@
           <td>
             <img [src]="'http://127.0.0.1:3000/getimage/' + util.image">
           </td>
-          <td>{{ util.cin }}</td>
+          
           <td>{{ util.nom }}</td>
           <td>{{ util.prenom }}</td>
+          <td>{{ util.role }}</td>
           <td>{{ util.email }}</td>
           <td>
             <a (click)="deleteUtil(util.cin)"><i class="fas fa-trash-alt"></i></a>
@@ -44,12 +45,13 @@
           <td>
             <img [src]="'http://127.0.0.1:3000/getimage/' + util.image">
           </td>
-          <td>{{ util.cin }}</td>
+          
           <td>{{ util.nom }}</td>
           <td>{{ util.prenom }}</td>
+          <td>{{ util.role }}</td>
           <td>{{ util.email }}</td>
           <td>
-            <a (click)="deleteUtil(util.cin)"><i class="fas fa-trash-alt"></i></a>
+            <a (click)="deleteUtil(util._id)"><i class="fas fa-trash-alt"></i></a>
             <a [routerLink]="['/update', util.cin]"><i class="fas fa-edit"></i></a>
             <a [routerLink]="['/consulterutil', util.cin]"><i class="fas fa-eye"></i></a>
           </td>

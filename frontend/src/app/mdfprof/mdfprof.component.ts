@@ -48,17 +48,8 @@ export class MdfprofComponent implements OnInit {
       if (this.util.prenom) {
         formData.append('prenom', this.util.prenom);
       }
-
-      if (this.util.email) {
-        formData.append('email', this.util.email);
-      }
-
       if (this.image) {
         formData.append('image', this.image);
-      }
-
-      if (this.util.mot_de_passe) {
-        formData.append('mot_de_passe', this.util.mot_de_passe);
       }
 
       this._auth.updateProfile(this.util._id, formData).subscribe((data) => {
